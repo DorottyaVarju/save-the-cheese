@@ -16,12 +16,23 @@ const natureAndEasy = [
     'VINE',
     'ROCK',
     'WAVE',
-    'MIST'
+    'MIST',
+    'GRASS',
+    'RIVER',
+    'BLOOM',
+    'WOODS',
+    'TREES',
+    'CLIFF',
+    'MOSSY',
+    'ALGAE',
+    'BULLS',
+    'PINE',
+    'HILLS',
+    'DUCK'
 ]
 
 //5-6 letters
 const natureAndMedium = [
-    'RIVER',
     'FOREST',
     'OCEAN',
     'FLOWER',
@@ -40,7 +51,13 @@ const natureAndMedium = [
     'FIELD',
     'FLORA',
     'STORM',
-    'SHORE'
+    'SHORE',
+    'FLOCK',
+    'FUNGI',
+    'VINES',
+    'MANGO',
+    'SWAMP',
+    'ECOLOGY'
 ]
 
 //7 letters

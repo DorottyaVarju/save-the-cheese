@@ -19,7 +19,16 @@ function HangmanDisplay(props) {
     let rungs = document.getElementsByClassName('rung');
     let ladderfoot, ladderHeight;
 
-    switch (word.length) {
+    const uniqueLetters = new Set();
+
+    for (let i = 0; i < word.length; i++) {
+        const letter = word[i].toLowerCase();
+        if (/[a-zA-Z]/.test(letter)) {
+            uniqueLetters.add(letter);
+        }
+    }
+
+    switch (uniqueLetters.size) {
         case 5:
             if (ladder !== null) {
                 for (let i = 0; i < rungs.length; i++) {
