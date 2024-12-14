@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/feed-the-mouse/static/css/main.016438aa.css",
+    "main.css": "/feed-the-mouse/static/css/main.a469b452.css",
     "main.js": "/feed-the-mouse/static/js/main.08a7610a.js",
     "static/js/787.38f16daf.chunk.js": "/feed-the-mouse/static/js/787.38f16daf.chunk.js",
     "static/media/yescheese.png": "/feed-the-mouse/static/media/yescheese.10a54334df5f2da947b1.png",
@@ -12,12 +12,12 @@
     "static/media/checkmark.png": "/feed-the-mouse/static/media/checkmark.1a7c114384194a99868b.png",
     "static/media/ladderMedium.png": "/feed-the-mouse/static/media/ladderMedium.b24c459d7c43a33376a6.png",
     "index.html": "/feed-the-mouse/index.html",
-    "main.016438aa.css.map": "/feed-the-mouse/static/css/main.016438aa.css.map",
+    "main.a469b452.css.map": "/feed-the-mouse/static/css/main.a469b452.css.map",
     "main.08a7610a.js.map": "/feed-the-mouse/static/js/main.08a7610a.js.map",
     "787.38f16daf.chunk.js.map": "/feed-the-mouse/static/js/787.38f16daf.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.016438aa.css",
+    "static/css/main.a469b452.css",
     "static/js/main.08a7610a.js"
   ]
 }
