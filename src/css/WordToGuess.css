@@ -188,6 +188,7 @@ div#selectedCatAndLevel > h1 {
 }
 
 @media only screen and (max-height: 800px) and (orientation: landscape) {
+
     button {
         font-size: 15px;
     }   

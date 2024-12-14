@@ -6,7 +6,7 @@
     padding: 0px 5%;
     grid-column: 1 / 6;
     grid-row: 4 / 6;
-    min-height: 300px;
+    /* min-height: 300px; */
 }
 
 .letters{
@@ -40,7 +40,7 @@
 @media only screen and (max-width: 768px) {
     #elementsToReturn{
         height: 40vh;
-        margin-top: -50px;
+        margin-top: -20px;
     }
 
     .letters{
@@ -62,9 +62,20 @@
 }
 
 @media only screen and (max-height: 800px) and (orientation: landscape) {
+
     #elementsToReturn{
         height: 40vh;
     }   
+}
+
+@media only screen and (max-height: 600px) and (orientation: landscape) {
+    .letters {
+        height:2rem;
+    }
+
+    #elementsToReturn{
+        margin-top: 26px;
+    }
 }
 /*
 @media only screen and ((min-width: 768px) and (max-height: 1368px)) {
