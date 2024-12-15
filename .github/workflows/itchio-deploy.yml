@@ -1,0 +1,32 @@
+name: Deploy to Itch.io
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install  # Ha van npm dependency, másképp lehet buildelni is.
+
+      - name: Build project
+        run: npm run build
+
+      - name: Upload to Itch.io
+        uses: rodluger/itchio-action@v1
+        with:
+          itchio_api_key: ${{ secrets.ITCHIO_API_KEY }}
+          game_id: 'feed-the-mouse'
+          upload_dir: './build'  # A buildelt fájlok mappája
