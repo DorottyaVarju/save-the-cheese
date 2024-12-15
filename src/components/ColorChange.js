@@ -32,6 +32,10 @@ const ColorChange = () => {
                 bodyBckgroundClass = 'purpleBodyBckground';
                 btnBckgroundClass = 'purpleBtnBckground';
                 break;
+            default: 
+                bodyBckgroundClass = 'brownBodyBckground';
+                btnBckgroundClass = 'brownBtnBckground';
+                break;
         }
 
         document.body.removeAttribute('class');
