@@ -155,6 +155,7 @@ function WordToGuess() {
         return [linesForWordToGuess, word];
     }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         returnAWordToGuess();
     }, []);
