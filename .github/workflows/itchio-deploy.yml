@@ -29,6 +29,6 @@ jobs:
         with:
           working-directory: './build'
           api-key: ${{ secrets.ITCHIO_API_KEY }}
-          user: simondalvai
+          user: vdcoderforfun
           game: 'feed-the-mouse'
           channel: 'html5'
