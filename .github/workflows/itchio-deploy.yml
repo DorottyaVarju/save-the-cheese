@@ -27,6 +27,8 @@ jobs:
       - name: Upload to Itch.io
         uses: dulvui/itchio-butler-upload@v0.0.1
         with:
-          itchio_api_key: ${{ secrets.ITCHIO_API_KEY }}
-          game_id: 'feed-the-mouse'
-          upload_dir: './build'  # A buildelt fájlok mappája
+          working-directory: './build'
+          api-key: ${{ secrets.ITCHIO_API_KEY }}
+          user: simondalvai
+          game: 'feed-the-mouse'
+          channel: 'html5'
