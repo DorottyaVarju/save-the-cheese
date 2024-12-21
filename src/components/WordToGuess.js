@@ -42,7 +42,7 @@ function WordToGuess() {
     }
 
     const backToMainPage = () => {
-        window.location.href = '/feed-the-mouse/';
+        window.location.href = './';
     };
 
     const data = JSON.parse(localStorage.getItem('formData'));
