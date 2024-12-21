@@ -5,7 +5,7 @@ import LettersToTry from './LettersToTry.js';
 import HangmanDisplay from './HangmanDisplay.js';
 import checkmark from '../images/checkmark.png';
 import xmark from '../images/xmark.png';
-import mouse from './images/mouse.png';
+import mouse from '../images/mouse.png';
 import yescheese from '../images/yescheese.png';
 import cheese from '../images/cheese.png';
 import { natureAndEasy, natureAndMedium, natureAndDifficult, entertainmentAndEasy, entertainmentAndMedium, entertainmentAndDifficult, societyAndEasy, societyAndMedium, societyAndDifficult, mixedAndEasy, mixedAndMedium, mixedAndDifficult, } from '../Words.js';
