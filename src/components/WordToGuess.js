@@ -37,7 +37,7 @@ function WordToGuess() {
     }
 
     const backToMainPage = () => {
-        window.location.href = '../../';
+        window.location.href = '../';
     };
     
 
