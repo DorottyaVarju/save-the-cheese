@@ -174,7 +174,7 @@ function WordToGuess() {
                 </ul>
                 <br></br>
                 <div id="drawingDiv">
-                    <img className="mouse" id="mouse" alt="mouse" src={goodGuess < {word}.length ? 'images/yescheese.png' : '/images/mouse.png'} title="mouse"></img>
+                    <img className="mouse" id="mouse" alt="mouse" src={goodGuess < {word}.length ? 'images/yescheese.png' : 'images/mouse.png'} title="mouse"></img>
                     <div id="ladderAndCheese">
                         
                         {wordSelected && <HangmanDisplay goodGuess={goodGuess} word={word}></HangmanDisplay>}
