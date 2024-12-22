@@ -3,11 +3,6 @@ import React from "react";
 import '../css/WordToGuess.css';
 import LettersToTry from './LettersToTry.js';
 import HangmanDisplay from './HangmanDisplay.js';
-import checkmark from '../images/checkmark.png';
-import xmark from '../images/xmark.png';
-import mouse from '../images/mouse.png';
-import yescheese from '../images/yescheese.png';
-import cheese from '../images/cheese.png';
 import { natureAndEasy, natureAndMedium, natureAndDifficult, entertainmentAndEasy, entertainmentAndMedium, entertainmentAndDifficult, societyAndEasy, societyAndMedium, societyAndDifficult, mixedAndEasy, mixedAndMedium, mixedAndDifficult, } from '../Words.js';
 
 function WordToGuess() {
@@ -145,7 +140,7 @@ function WordToGuess() {
         }
 
         document.getElementById('mark').style.opacity = 0;
-        if( document.getElementById('mouse')) document.getElementById('mouse').src = mouse;
+        if( document.getElementById('mouse')) document.getElementById('mouse').src = '/images/mouse.png';
         let lettersOfAbcFromThePreviousWord = document.getElementsByClassName('letters');
         (Array.from(lettersOfAbcFromThePreviousWord)).forEach((letterFromPreviousWord, indexOfLetterFromPreviousWord) => {
             letterFromPreviousWord.classList.remove('alreadyInWordLetter');
@@ -173,16 +168,16 @@ function WordToGuess() {
                     {linesForWordToGuess}
                     <li className="letterAndLineContainer">
                         <span className="imgAboveLine">
-                            <img src={goodGuess < {word}.length ? xmark : checkmark} alt="mark" id="mark"></img>
+                            <img src={goodGuess < {word}.length ? '/images/xmark.png' : '/images/checkmark.png'} alt="mark" id="mark"></img>
                         </span>
                     </li>
                 </ul>
                 <br></br>
                 <div id="drawingDiv">
-                    <img className="mouse" id="mouse" alt="mouse" src={goodGuess < {word}.length ? yescheese : mouse} title="mouse"></img>
+                    <img className="mouse" id="mouse" alt="mouse" src={goodGuess < {word}.length ? '/images/yescheese.png' : '/images/mouse.png'} title="mouse"></img>
                     <div id="ladderAndCheese">
                         {wordSelected && <HangmanDisplay goodGuess={goodGuess} word={word}></HangmanDisplay>}
-                        <img className="cheese" src={cheese} alt="cheese" title="cheese"></img>
+                        <img className="cheese" src="/images/cheese.png" alt="cheese" title="cheese"></img>
                     </div>
                 </div>
                 <br></br>

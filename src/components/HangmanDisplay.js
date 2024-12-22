@@ -1,10 +1,6 @@
 import React from "react";
 import '../css/HangmanDisplay.css';
 import { useEffect } from "react";
-import ladderEasy from '../images/ladderEasy.png';
-import ladderMedium from '../images/ladderMedium.png';
-import ladderHard from '../images/ladderHard.png';
-import rung from '../images/rung.png';
 
 function HangmanDisplay(props) {
 
@@ -39,7 +35,7 @@ function HangmanDisplay(props) {
                 rung5.style.marginLeft = '-5px';
             }
             ladderHeight = '132px';
-            ladderfoot = ladderMedium;
+            ladderfoot = '/images/ladderMedium.png';
             break;
         case 6:
             if (ladder !== null) {
@@ -52,11 +48,11 @@ function HangmanDisplay(props) {
                 rung5.style.marginLeft = '-10px';
             }
             ladderHeight = '175px';
-            ladderfoot = ladderMedium;
+            ladderfoot = '/images/ladderMedium.png';
             break;
         case 7:
             ladderHeight = '220px';
-            ladderfoot = ladderHard;
+            ladderfoot = '/images/ladderHard.png';
             break;
         default:
             if (ladder !== null) {
@@ -68,7 +64,7 @@ function HangmanDisplay(props) {
                 rung5.style.marginLeft = '-10px';
             }
             ladderHeight = '108px';
-            ladderfoot = ladderEasy;
+            ladderfoot = '/images/ladderEasy.png';
     }
 
     useEffect(() => {
@@ -110,11 +106,11 @@ function HangmanDisplay(props) {
                 <img className="ladderfoot" id="ladderfootright" alt="ladderfootright" src={ladderfoot} title="ladderfootright"></img>
             </div>
             <div id="rungDiv">
-                <img className="rung" id="rung1" alt="rung1" src={rung} title="rung"></img>
-                <img className="rung" id="rung2" alt="rung2" src={rung} title="rung"></img>
-                <img className="rung" id="rung3" alt="rung3" src={rung} title="rung"></img>
-                <img className="rung" id="rung4" alt="rung4" src={rung} title="rung"></img>
-                <img className="rung" id="rung5" alt="rung5" src={rung} title="rung"></img>
+                <img className="rung" id="rung1" alt="rung1" src="/images/rung.png" title="rung"></img>
+                <img className="rung" id="rung2" alt="rung2" src="/images/rung.png" title="rung"></img>
+                <img className="rung" id="rung3" alt="rung3" src="/images/rung.png" title="rung"></img>
+                <img className="rung" id="rung4" alt="rung4" src="/images/rung.png" title="rung"></img>
+                <img className="rung" id="rung5" alt="rung5" src="/images/rung.png" title="rung"></img>
             </div>
         </div>
     );

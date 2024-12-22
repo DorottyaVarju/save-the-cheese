@@ -1,5 +1,4 @@
 import React from 'react';
-import fullScreenBtn from '../images/fullScreenBtn.png';
 
 const FullscreenButton = () => {
 
@@ -33,7 +32,7 @@ const FullscreenButton = () => {
 
   return (
     <>
-      <img onClick={handleFullscreen} alt="fullScreenBtn" id="fullScreenBtn" src={fullScreenBtn} title="Fullscreen"></img>
+      <img onClick={handleFullscreen} alt="fullScreenBtn" id="fullScreenBtn" src="/images/fullScreenBtn.png" title="Fullscreen"></img>
     </>
   );
 };

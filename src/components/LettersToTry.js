@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import '../css/LettersToTry.css';
-import yescheese from '../images/yescheese.png';
 
 function LettersToTry(props) {
     const abc = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
@@ -45,7 +44,7 @@ function LettersToTry(props) {
         Array.from(document.getElementsByClassName('letters')).forEach((letter) => {
             letter.classList.add('untriedLetter');
         });
-        document.getElementById('mouse').src = yescheese;
+        document.getElementById('mouse').src = '/images/yescheese.png';
     };
 
     function isThisLetterInTheWord(letterOfAbc) {
