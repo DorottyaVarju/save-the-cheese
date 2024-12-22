@@ -24,6 +24,9 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Check asset-manifest.json
+        run: cat ./build/asset-manifest.json
+
       - name: Upload to Itch.io
         uses: dulvui/itchio-butler-upload@v0.0.1
         with:
