@@ -16,7 +16,8 @@
   },
   "scripts": {
     "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
-    "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
+    "clean": "rm -f ./build/asset-manifest.json",
+    "build": "DISABLE_ESLINT_PLUGIN=true npm run clean && react-scripts build",
     "test": "DISABLE_ESLINT_PLUGIN=true react-scripts test",
     "eject": "DISABLE_ESLINT_PLUGIN=true react-scripts eject"
   },
