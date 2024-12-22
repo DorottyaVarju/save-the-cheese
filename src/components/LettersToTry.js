@@ -44,7 +44,7 @@ function LettersToTry(props) {
         Array.from(document.getElementsByClassName('letters')).forEach((letter) => {
             letter.classList.add('untriedLetter');
         });
-        document.getElementById('mouse').src = '../public/images/yescheese.png';
+        document.getElementById('mouse').src = 'images/yescheese.png';
     };
 
     function isThisLetterInTheWord(letterOfAbc) {
