@@ -32,7 +32,7 @@ const FullscreenButton = () => {
 
   return (
     <>
-      <img onClick={handleFullscreen} alt="fullScreenBtn" id="fullScreenBtn" src="images/fullScreenBtn.png" title="Fullscreen"></img>
+      <img onClick={handleFullscreen} alt="fullScreenBtn" id="fullScreenBtn" src="/images/fullScreenBtn.png" title="Fullscreen"></img>
     </>
   );
 };

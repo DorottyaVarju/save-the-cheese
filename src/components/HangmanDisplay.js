@@ -35,7 +35,7 @@ function HangmanDisplay(props) {
                 rung5.style.marginLeft = '-5px';
             }
             ladderHeight = '132px';
-            ladderfoot = 'images/ladderMedium.png';
+            ladderfoot = '/images/ladderMedium.png';
             break;
         case 6:
             if (ladder !== null) {
@@ -48,11 +48,11 @@ function HangmanDisplay(props) {
                 rung5.style.marginLeft = '-10px';
             }
             ladderHeight = '175px';
-            ladderfoot = 'images/ladderMedium.png';
+            ladderfoot = '/images/ladderMedium.png';
             break;
         case 7:
             ladderHeight = '220px';
-            ladderfoot = 'images/ladderHard.png';
+            ladderfoot = '/images/ladderHard.png';
             break;
         default:
             if (ladder !== null) {
@@ -64,7 +64,7 @@ function HangmanDisplay(props) {
                 rung5.style.marginLeft = '-10px';
             }
             ladderHeight = '108px';
-            ladderfoot = 'images/ladderEasy.png';
+            ladderfoot = '/images/ladderEasy.png';
     }
 
     useEffect(() => {
@@ -106,11 +106,11 @@ function HangmanDisplay(props) {
                 <img className="ladderfoot" id="ladderfootright" alt="ladderfootright" src={ladderfoot} title="ladderfootright"></img>
             </div>
             <div id="rungDiv">
-                <img className="rung" id="rung1" alt="rung1" src="images/rung.png" title="rung"></img>
-                <img className="rung" id="rung2" alt="rung2" src="images/rung.png" title="rung"></img>
-                <img className="rung" id="rung3" alt="rung3" src="images/rung.png" title="rung"></img>
-                <img className="rung" id="rung4" alt="rung4" src="images/rung.png" title="rung"></img>
-                <img className="rung" id="rung5" alt="rung5" src="images/rung.png" title="rung"></img>
+                <img className="rung" id="rung1" alt="rung1" src="/images/rung.png" title="rung"></img>
+                <img className="rung" id="rung2" alt="rung2" src="/images/rung.png" title="rung"></img>
+                <img className="rung" id="rung3" alt="rung3" src="/images/rung.png" title="rung"></img>
+                <img className="rung" id="rung4" alt="rung4" src="/images/rung.png" title="rung"></img>
+                <img className="rung" id="rung5" alt="rung5" src="/images/rung.png" title="rung"></img>
             </div>
         </div>
     );
