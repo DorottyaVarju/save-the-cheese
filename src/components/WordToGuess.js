@@ -44,6 +44,7 @@ function WordToGuess() {
     const backToMainPage = () => {
         window.location.href = '../../';
     };
+    
 
     const data = JSON.parse(localStorage.getItem('formData'));
     let category = 'mixed';
