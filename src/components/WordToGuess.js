@@ -140,7 +140,7 @@ function WordToGuess() {
         }
 
         document.getElementById('mark').style.opacity = 0;
-        if( document.getElementById('mouse')) document.getElementById('mouse').src = '/images/mouse.png';
+        if( document.getElementById('mouse')) document.getElementById('mouse').src = '../public/images/mouse.png';
         let lettersOfAbcFromThePreviousWord = document.getElementsByClassName('letters');
         (Array.from(lettersOfAbcFromThePreviousWord)).forEach((letterFromPreviousWord, indexOfLetterFromPreviousWord) => {
             letterFromPreviousWord.classList.remove('alreadyInWordLetter');
@@ -168,16 +168,16 @@ function WordToGuess() {
                     {linesForWordToGuess}
                     <li className="letterAndLineContainer">
                         <span className="imgAboveLine">
-                            <img src={goodGuess < {word}.length ? '/images/xmark.png' : '/images/checkmark.png'} alt="mark" id="mark"></img>
+                            <img src={goodGuess < {word}.length ? '../public/images/xmark.png' : '../public/images/checkmark.png'} alt="mark" id="mark"></img>
                         </span>
                     </li>
                 </ul>
                 <br></br>
                 <div id="drawingDiv">
-                    <img className="mouse" id="mouse" alt="mouse" src={goodGuess < {word}.length ? '/images/yescheese.png' : '/images/mouse.png'} title="mouse"></img>
+                    <img className="mouse" id="mouse" alt="mouse" src={goodGuess < {word}.length ? '../public/images/yescheese.png' : '/images/mouse.png'} title="mouse"></img>
                     <div id="ladderAndCheese">
                         {wordSelected && <HangmanDisplay goodGuess={goodGuess} word={word}></HangmanDisplay>}
-                        <img className="cheese" src="/images/cheese.png" alt="cheese" title="cheese"></img>
+                        <img className="cheese" src="../public/images/cheese.png" alt="cheese" title="cheese"></img>
                     </div>
                 </div>
                 <br></br>
