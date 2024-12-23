@@ -178,7 +178,7 @@ function WordToGuess() {
                     <div id="ladderAndCheese">
                         
                         {wordSelected && <HangmanDisplay goodGuess={goodGuess} word={word}></HangmanDisplay>}
-                        <img className="cheese" src='https://html-classic.itch.zone/html/12316504/build/static/media/cheese.73f4134a21f1ce176268.png' alt="cheese" title="cheese"></img>
+                        <img className="cheese" src='images\cheese.png' alt="cheese" title="cheese"></img>
                     </div>
                 </div>
                 <br></br>
