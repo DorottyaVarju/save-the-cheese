@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import '../css/LettersToTry.css';
 
 function LettersToTry(props) {
+    const imageUrl = process.env.FEED_THE_MOUSE_IMAGE_URL;
     const abc = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
     const { word, goodGuess, onGoodLetter } = props;
@@ -44,7 +45,7 @@ function LettersToTry(props) {
         Array.from(document.getElementsByClassName('letters')).forEach((letter) => {
             letter.classList.add('untriedLetter');
         });
-        document.getElementById('mouse').src = '/images/yescheese.png';
+        document.getElementById('mouse').src = imageUrl+'yescheese.png';
     };
 
     function isThisLetterInTheWord(letterOfAbc) {
