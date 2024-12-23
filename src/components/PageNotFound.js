@@ -2,12 +2,9 @@ import React from "react";
 import '../css/PageNotFound.css';
 
 function PageNotFound(){
-
-    const imageUrl = process.env.FEED_THE_MOUSE_IMAGE_URL;
-
     return (
         <div id="notFound">
-            <img className="notFound" alt="Page Not Found" src={imageUrl+'yescheese.png'} title="Page Not Found"></img>
+            <img className="notFound" alt="Page Not Found" src="images/yescheese.png" title="Page Not Found"></img>
             <h1>Ooops, something went wrong!</h1>
         </div>
     );

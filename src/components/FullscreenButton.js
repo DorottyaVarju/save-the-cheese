@@ -1,7 +1,6 @@
 import React from 'react';
 
 const FullscreenButton = () => {
-  const imageUrl = process.env.FEED_THE_MOUSE_IMAGE_URL;
 
   const handleFullscreen = () => {
     const element = document.documentElement; // Target the entire page (html element)
@@ -33,7 +32,7 @@ const FullscreenButton = () => {
 
   return (
     <>
-      <img onClick={handleFullscreen} alt="fullScreenBtn" id="fullScreenBtn" src={imageUrl+"fullScreenBtn.png"} title="Fullscreen"></img>
+      <img onClick={handleFullscreen} alt="fullScreenBtn" id="fullScreenBtn" src="images/fullScreenBtn.png" title="Fullscreen"></img>
     </>
   );
 };
