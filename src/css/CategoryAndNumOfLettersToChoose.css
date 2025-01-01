@@ -1,4 +1,4 @@
-form, h1 {
+/* form, h1 {
     color: #fff88bff;
     font-size: 18px;
     font-weight: bold;
@@ -66,4 +66,70 @@ select option {
     color: rgb(255, 0, 0);
     margin-top: 20px;
     height: 20px;
+} */
+
+form, h1 {
+    color: #fff88bff;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 60px;
 }
+
+h1 {
+    margin-top: 100px;
+    height: 20px;
+}
+
+button {
+    z-index: 1;
+    box-sizing: border-box;
+    height: 40px;
+    padding: 10px 30px;
+    border-radius: 20px;
+    border: none;
+    background-color:#844923ff;
+    cursor: pointer;
+    background: transparent;
+    color: #fff88bff;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #fff88bff;
+    color: #844923ff;
+}
+
+select, input {
+    box-sizing: border-box;
+    height: 50px;
+    padding: 10px 30px;
+    border-radius: 20px;
+    border: none;
+    background-color:#844923ff;
+    cursor: pointer;
+    color: #fff88bff;
+    font-size: 18px;
+    font-weight: bold;
+    outline: none;
+    margin-top: 8px;
+}
+
+input {
+    cursor: text;
+    text-align: center;
+    width: 14rem;
+}
+
+select option {
+    background-color:#844923ff;
+}
+
+#errorMsg {
+    color: rgb(255, 0, 0);
+    margin-top: 20px;
+    height: 20px;
+}
+ 
+ 

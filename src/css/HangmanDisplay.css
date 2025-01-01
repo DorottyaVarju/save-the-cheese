@@ -1,8 +1,6 @@
 #drawingDiv{
     display: flex;
     justify-content: center;
-    height: 40vh;
-    min-height: 265px;
 }
 
 .mouse {
@@ -16,9 +14,16 @@
     width: 150px;
 }
 
+#ladderFootDiv{
+    display: flex;
+    height: 100%;
+}
+
 .ladderfoot {
    opacity: 0;
    align-self: center;
+   height: 100%;
+   margin-left: 7px;
 }
 
 #ladder {

@@ -1,4 +1,4 @@
-.App {
+/* .App {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -6,6 +6,49 @@
   display: grid;
   grid-template-columns: 20% 20% 20% 20% 20%;
   grid-template-rows: 20% 20% 20% 20% 20%;
+}
+
+#fullScreenBtn{
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  cursor: pointer;
+}
+
+#fullScreenBtn:hover{
+  filter: sepia(1) saturate(500%) hue-rotate(-20deg) brightness(80%);
+} */
+
+#root  {
+  height: 100%;
+}
+
+.App {
+  height: 100%;
+  text-align: center;
+  display: grid;
+  min-height: 605px;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 20% auto 10%;
+  grid-template-areas: 
+    "h h h h h h h h h h h h"
+    "f f f f f f f f f f f f"
+    "c c c c c c c c c c c c"
+}
+
+h1  {
+  grid-area: h;
+}
+
+form  {
+  grid-area: f;
+}
+
+#colorChange  {
+  grid-area: c;
 }
 
 #fullScreenBtn{

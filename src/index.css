@@ -1,4 +1,4 @@
-*{
+/* *{
   height: 100%;
   margin: 0;
   padding: 0;
@@ -34,4 +34,45 @@ code {
   body{
     background-size: 500px 350px;
   }
+} */
+
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica';
+  box-sizing: border-box;
 }
+
+*:focus-visible{
+  outline: none;
+}
+
+html{
+  height: 100%;
+}
+
+body {
+  background-color: #533e08d7;
+  background-image: url("../public/images/bricks.png");
+  background-repeat: repeat;
+  background-size: 800px 650px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica', 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: auto;
+  height: 100%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@media only screen and (max-width: 768px) {
+  body{
+    background-size: 500px 350px;
+  }
+}
+

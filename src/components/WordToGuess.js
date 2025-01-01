@@ -9,6 +9,9 @@ function WordToGuess() {
     let btnBckgroundClass = localStorage.getItem('btnBckgroundClass');
     let bodyBckgroundClass = localStorage.getItem('bodyBckgroundClass');
     document.body.classList.add(bodyBckgroundClass);
+    if(document.getElementsByClassName('App')[0] !== undefined) {
+        document.getElementsByClassName('App')[0].classList.add('gameApp');
+    }
 
     let buttons = document.getElementsByTagName('button');
     let selects = document.getElementsByTagName('select');
@@ -37,6 +40,7 @@ function WordToGuess() {
     }
 
     const backToMainPage = () => {
+        document.getElementsByClassName('App')[0].classList.remove('gameApp');
         window.location.href = './index.html';
     };
     
