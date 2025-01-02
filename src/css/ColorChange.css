@@ -1,9 +1,6 @@
-#colorChange{
-    padding: 20px;
-}
-
 div#colorChange > button{
     margin-right: 10px;
+    justify-self: start;
 }
 
 #pinkBtn, #brownBtn, #blueBtn, #greenBtn, #purpleBtn{
@@ -55,7 +52,6 @@ div#colorChange > button{
 
 @media only screen and (max-width: 768px) {
     #colorChange{
-        width: 100%;
-        margin-bottom: 20px;
+        grid-column: 1/-1;
     }
 }

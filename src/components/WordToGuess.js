@@ -11,6 +11,7 @@ function WordToGuess() {
     document.body.classList.add(bodyBckgroundClass);
     if(document.getElementsByClassName('App')[0] !== undefined) {
         document.getElementsByClassName('App')[0].classList.add('gameApp');
+        document.getElementById('colorChange').style.marginTop = '-10px';
     }
 
     let buttons = document.getElementsByTagName('button');
