@@ -2,16 +2,19 @@ import { useState, useEffect } from "react";
 import React from "react";
 import '../css/WordToGuess.css';
 import LettersToTry from './LettersToTry.js';
+import FullscreenButton from './FullscreenButton';
 import HangmanDisplay from './HangmanDisplay.js';
+import ColorChange from './ColorChange.js';
+
 import { natureAndEasy, natureAndMedium, natureAndDifficult, entertainmentAndEasy, entertainmentAndMedium, entertainmentAndDifficult, societyAndEasy, societyAndMedium, societyAndDifficult, mixedAndEasy, mixedAndMedium, mixedAndDifficult, } from '../Words.js';
 
 function WordToGuess() {
     let btnBckgroundClass = localStorage.getItem('btnBckgroundClass');
     let bodyBckgroundClass = localStorage.getItem('bodyBckgroundClass');
     document.body.classList.add(bodyBckgroundClass);
+
     if(document.getElementsByClassName('App')[0] !== undefined) {
         document.getElementsByClassName('App')[0].classList.add('gameApp');
-        document.getElementById('colorChange').style.marginTop = '-10px';
     }
 
     let buttons = document.getElementsByTagName('button');
@@ -168,7 +171,8 @@ function WordToGuess() {
 
     return (
         <>
-            <div id="gameDiv">
+            <div id="gnameAndWordAndFullscreen">
+                <h1 id="gamerName">{gamerName !== '' ? 'Hi, '+gamerName+'!' : ''}</h1>
                 <ul>
                     {linesForWordToGuess}
                     <li className="letterAndLineContainer">
@@ -177,25 +181,22 @@ function WordToGuess() {
                         </span>
                     </li>
                 </ul>
-                <br></br>
-                <div id="drawingDiv">
-                    <img className="mouse" id="mouse" alt="mouse" src={goodGuess < {word}.length ? 'images/yescheese.png' : 'images/mouse.png'} title="mouse"></img>
-                    <div id="ladderAndCheese">
-                        
-                        {wordSelected && <HangmanDisplay goodGuess={goodGuess} word={word}></HangmanDisplay>}
-                        <img className="cheese" src='images/cheese.png' alt="cheese" title="cheese"></img>
-                    </div>
-                </div>
-                <br></br>
-                <br></br>
-                <div id="buttonDiv">
-                    <button type="button" onClick={returnAWordToGuess} id="btnIWantAWord">I want another word!</button>
-                    <button type="button" id="backBtn" onClick={backToMainPage}>Back to the main page!</button>
+                <FullscreenButton />
+            </div>
+            <div id="drawingDiv">
+                <img className="mouse" id="mouse" alt="mouse" src={goodGuess < {word}.length ? 'images/yescheese.png' : 'images/mouse.png'} title="mouse"></img>
+                <div id="ladderAndCheese">
+                    {wordSelected && <HangmanDisplay goodGuess={goodGuess} word={word}></HangmanDisplay>}
+                    <img className="cheese" src='images/cheese.png' alt="cheese" title="cheese"></img>
                 </div>
             </div>
+            <div id="buttonDiv">
+                <button type="button" onClick={returnAWordToGuess} id="btnIWantAWord">I want another word!</button>
+                <button type="button" id="backBtn" onClick={backToMainPage}>Back to the main page!</button>
+            </div>
             <LettersToTry word={word} goodGuess={goodGuess} onGoodLetter={handleGoodLetter}></LettersToTry>
-            <h1 id="gamerName">{gamerName !== '' ? 'Hi, '+gamerName+'!' : ''}</h1>
-            <div id="selectedCatAndLevel">
+            <div id="selectedCatAndLevelAndColor">
+                <ColorChange />
                 <h1>Selected category: {category !== undefined ? category.toUpperCase() : ''} &nbsp;&nbsp; Selected level: {level !== undefined ? level.toUpperCase() : ''}</h1>
             </div>  
         </>

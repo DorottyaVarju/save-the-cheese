@@ -2,6 +2,8 @@ import React from "react";
 import '../css/CategoryAndNumOfLettersToChoose.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ColorChange from './ColorChange.js';
+import FullscreenButton from './FullscreenButton';
 
 function CategoryAndNumOfLettersToChoose() {
     
@@ -40,6 +42,7 @@ function CategoryAndNumOfLettersToChoose() {
 
     return (
         <>
+            <FullscreenButton />
             <h1>Feed the mouse - by guessing a word!</h1>
             <form onSubmit={handleSubmit}>
                 <label>Enter your name:</label>
@@ -72,6 +75,7 @@ function CategoryAndNumOfLettersToChoose() {
                 <button className={btnBckgroundClass} type="submit">Let's start!</button>
                 <p id="errorMsg"></p>
             </form>
+            <ColorChange />
         </>
     )
 

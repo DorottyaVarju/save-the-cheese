@@ -8,11 +8,12 @@
   display: grid;
   min-height: 605px;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 20% auto 0.25fr;
+  grid-template-rows: 5% 15% auto 4%;
   grid-template-areas: 
+    "fsb fsb fsb fsb fsb fsb fsb fsb fsb fsb fsb fsb"
     "h h h h h h h h h h h h"
     "f f f f f f f f f f f f"
-    "c c c . . . . . . . . ."
+    "c c c c c c c c c c c c"
 }
 
 h1  {
@@ -27,15 +28,13 @@ form  {
   grid-area: c;
   justify-self: start;
   margin-left: 10px;
-  margin-top: 20px;
 }
 
 #fullScreenBtn{
+  grid-area: fsb;
+  justify-self: end;
   width: 30px;
   height: 30px;
-  position: absolute;
-  top: 0;
-  right: 0;
   margin: 10px;
   cursor: pointer;
 }

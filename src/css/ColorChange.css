@@ -1,6 +1,5 @@
 div#colorChange > button{
     margin-right: 10px;
-    justify-self: start;
 }
 
 #pinkBtn, #brownBtn, #blueBtn, #greenBtn, #purpleBtn{

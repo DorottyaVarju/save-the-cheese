@@ -1,37 +1,19 @@
 .gameApp {
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: auto auto 2.5%;
+    grid-template-rows: 10% auto 2.5% auto 4%;
     grid-gap: 14px;
     grid-template-areas: 
-      "g g g g g g g g g g g g"
-      "e e e e e e e e e e e e"
-      "c c c . scl scl scl scl scl scl scl scl";
-}
-
-#gameDiv  {
-    grid-area: g;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: auto 65% 10%;
-    grid-gap: 12px;
-    grid-template-areas: 
-      "ul ul ul ul ul ul ul ul ul ul ul ul"
+      "gwf gwf gwf gwf gwf gwf gwf gwf gwf gwf gwf gwf"
       "dd dd dd dd dd dd dd dd dd dd dd dd"
       "bd bd bd bd bd bd bd bd bd bd bd bd"
+      "e e e e e e e e e e e e"
+      "sclc sclc sclc sclc sclc sclc sclc sclc sclc sclc sclc sclc";
 }
 
-#elementsToReturn  {
-    grid-area: e;
-}
-
-ul {
-    grid-area: ul;
+#gnameAndWordAndFullscreen{
+    grid-area: gwf;
     display: flex;
-    align-items: flex-end;
-    align-self: center;
-    list-style: none;
-    height: 12vh;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 #drawingDiv{
@@ -40,6 +22,25 @@ ul {
 
 #buttonDiv{
     grid-area: bd;
+}
+
+#elementsToReturn  {
+    grid-area: e;
+}
+
+#selectedCatAndLevelAndColor{
+    grid-area: sclc;
+    display: flex;
+    justify-content: center;
+}
+
+#selectedCatAndLevelAndColor > h1{
+    margin: 0;
+}
+
+ul {
+    display: flex;
+    align-items: flex-end;
 }
 
 .letterAndLineContainer{
@@ -67,10 +68,6 @@ ul {
     display: inline-flex;
 }
 
-#buttonDiv {
-    align-self: center;
-}
-
 button {
     box-sizing: border-box;
     padding: 10px 30px;
@@ -94,7 +91,6 @@ button:hover {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     border-right: 2px solid #fff88bff;
-    align-self: flex-end;
 }
 
 #backBtn {
@@ -103,7 +99,6 @@ button:hover {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     border-left: 2px solid #fff88bff;
-    align-self: flex-end;
 }
 
 #selectedCatAndLevel {
@@ -119,10 +114,6 @@ div#selectedCatAndLevel > h1 {
 }
 
 #gamerName{
-    height: 10px;
-    position: absolute;
-    top: 0;
-    left: 0;
     margin: 10px;
 }
 
