@@ -1,4 +1,5 @@
 .gameApp {
+    display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: 10% auto 2.5% auto 4%;
     grid-gap: 14px;
@@ -22,6 +23,7 @@
 
 #buttonDiv{
     grid-area: bd;
+    min-width: 334px;
 }
 
 #elementsToReturn  {
@@ -131,11 +133,13 @@ div#selectedCatAndLevel > h1 {
         height: 1.9rem;
     }   
 
-    div#selectedCatAndLevel > h1, #gamerName {
-        font-size: 16px;
+    div#selectedCatAndLevelAndColor > h1, #gamerName {
+        font-size: 12px;
     }
 
-    #selectedCatAndLevel {
+    #selectedCatAndLevelAndColor {
+        align-content: center;
+        flex-wrap: wrap;
         margin-bottom: 0px;
     }
 
@@ -179,7 +183,7 @@ div#selectedCatAndLevel > h1 {
     }
     
     .lineForWordToGuess {
-        font-size: 8px;
+        font-size: 6px;
         margin-top: -10px;
     }
     

@@ -48,9 +48,3 @@ div#colorChange > button{
 .purpleBodyBckground{
     background-color: #53228c;
 }
-
-@media only screen and (max-width: 768px) {
-    #colorChange{
-        grid-column: 1/-1;
-    }
-}

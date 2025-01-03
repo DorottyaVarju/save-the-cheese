@@ -6,9 +6,9 @@
   height: 100%;
   text-align: center;
   display: grid;
-  min-height: 605px;
+  min-height: 600px;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 5% 15% auto 4%;
+  grid-template-rows: 5% 15% auto 5%;
   grid-template-areas: 
     "fsb fsb fsb fsb fsb fsb fsb fsb fsb fsb fsb fsb"
     "h h h h h h h h h h h h"
@@ -26,7 +26,6 @@ form  {
 
 #colorChange  {
   grid-area: c;
-  justify-self: start;
   margin-left: 10px;
 }
 
@@ -41,4 +40,10 @@ form  {
 
 #fullScreenBtn:hover{
   filter: sepia(1) saturate(500%) hue-rotate(-20deg) brightness(80%);
+}
+
+@media only screen and (max-width: 768px) {
+  #colorChange{
+      justify-self: center;
+  }
 }

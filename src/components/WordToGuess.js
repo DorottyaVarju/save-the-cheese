@@ -44,10 +44,8 @@ function WordToGuess() {
     }
 
     const backToMainPage = () => {
-        document.getElementsByClassName('App')[0].classList.remove('gameApp');
         window.location.href = './index.html';
     };
-    
 
     const data = JSON.parse(localStorage.getItem('formData'));
     let category = 'mixed';

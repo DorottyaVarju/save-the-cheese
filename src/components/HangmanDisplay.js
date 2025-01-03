@@ -30,9 +30,9 @@ function HangmanDisplay(props) {
                 for (let i = 0; i < rungs.length; i++) {
                     rungs[i].style.width = '90px';
                 }
-                rung3.style.marginLeft = '15px';
-                rung4.style.marginLeft = '5px';
-                rung5.style.marginLeft = '-5px';
+                rung3.style.marginLeft = '-10px';
+                rung4.style.marginRight = '25px';
+                rung5.style.marginRight = '30px';
             }
             ladderHeight = '132px';
             ladderfoot = 'images/ladderMedium.png';
@@ -44,8 +44,8 @@ function HangmanDisplay(props) {
                 }
                 rung2.style.marginLeft = '20px';
                 rung3.style.marginLeft = '10px';
-                rung4.style.marginLeft = '0px';
-                rung5.style.marginLeft = '-10px';
+                rung4.style.marginRight = '10px';
+                rung5.style.marginRight = '15px';
             }
             ladderHeight = '175px';
             ladderfoot = 'images/ladderMedium.png';
@@ -60,8 +60,7 @@ function HangmanDisplay(props) {
                 for (let i = 0; i < rungs.length; i++) {
                     rungs[i].style.width = '108px';
                 }
-                rung4.style.marginLeft = '10px';
-                rung5.style.marginLeft = '-10px';
+                rung5.style.marginLeft = '-25px';
             }
             ladderHeight = '108px';
             ladderfoot = 'images/ladderEasy.png';
