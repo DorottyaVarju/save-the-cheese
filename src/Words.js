@@ -253,7 +253,7 @@ const mixedAndMedium = [
     'JUNGLE'
 ]
 
-//7 different letters
+//7 letters
 const mixedAndDifficult = [
     'BRACING',
     'JOURNEY',
@@ -270,7 +270,21 @@ const mixedAndDifficult = [
     'SPINDLE',
     'FOLIAGE',
     'FLAMING',
-    'DOLPHIN'
+    'DOLPHIN',
+    'JOURNEY',
+    'CULTURE',
+    'WINTERY',
+    'MYSTERY',
+    'ACCOUNT',
+    'FREEDOM',
+    'FRIENDY',
+    'GIRAFFE',
+    'ECLIPSE',
+    'HARVEST',
+    'HORIZON',
+    'LETTERS',
+    'SOCIETY',
+    'VICTORY'
 ]
 
 export {natureAndEasy, natureAndMedium, natureAndDifficult, entertainmentAndEasy, entertainmentAndMedium, entertainmentAndDifficult, societyAndEasy, societyAndMedium, societyAndDifficult, mixedAndEasy, mixedAndMedium, mixedAndDifficult,};
