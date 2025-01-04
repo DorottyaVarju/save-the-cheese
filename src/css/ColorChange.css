@@ -1,50 +1,69 @@
-div#colorChange > button{
+div#colorChange>button {
     margin-right: 10px;
 }
 
-#pinkBtn, #brownBtn, #blueBtn, #greenBtn, #purpleBtn{
+#pinkBtn,
+#brownBtn,
+#blueBtn,
+#greenBtn,
+#purpleBtn {
     border-radius: 50%;
     padding: 0px;
     width: 20px !important;
     height: 20px;
 }
 
-#brownBtn, #brownBtn:hover, .brownBtnBckground{
+#brownBtn,
+#brownBtn:hover,
+.brownBtnBckground,
+div.brownBtnBckgroundForSelect>div>div {
     background-color: #844923ff;
 }
 
-.brownBodyBckground{
+.brownBodyBckground {
     background-color: #533e08d7;
 }
 
-#pinkBtn,#pinkBtn:hover, .pinkBtnBckground{
+#pinkBtn,
+#pinkBtn:hover,
+.pinkBtnBckground,
+div.pinkBtnBckgroundForSelect>div>div {
     background-color: #8c3747;
 }
 
-.pinkBodyBckground{
+.pinkBodyBckground {
     background-color: #b5485d;
 }
 
-#blueBtn, #blueBtn:hover, .blueBtnBckground{
+#blueBtn,
+#blueBtn:hover,
+.blueBtnBckground,
+div.blueBtnBckgroundForSelect>div>div {
     background-color: #072ac8;
 }
 
-.blueBodyBckground{
+.blueBodyBckground {
     background-color: #184a87;
 }
 
-#greenBtn, #greenBtn:hover, .greenBtnBckground{
+#greenBtn,
+#greenBtn:hover,
+.greenBtnBckground,
+div.greenBtnBckgroundForSelect>div>div {
     background-color: #1a5c3d;
 }
 
-.greenBodyBckground{
+.greenBodyBckground {
     background-color: #2e785a;
 }
 
-#purpleBtn, #purpleBtn:hover, .purpleBtnBckground{
+#purpleBtn,
+#purpleBtn:hover,
+.purpleBtnBckground,
+div.purpleBtnBckgroundForSelect>div>div {
     background-color: #480ca8;
 }
 
-.purpleBodyBckground{
+.purpleBodyBckground {
     background-color: #53228c;
 }

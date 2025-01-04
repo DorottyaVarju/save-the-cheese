@@ -5,7 +5,7 @@ const ColorChange = () => {
 
     const themeChange = (id) => {
         let buttons = document.getElementsByTagName('button');
-        let selects = document.getElementsByTagName('select');
+        let selectContainers = document.getElementsByClassName('selectContainer');
         let inputs = document.getElementsByTagName('input');
         let options = document.getElementsByTagName('option');
     
@@ -54,13 +54,13 @@ const ColorChange = () => {
             }
         }
     
-        for (let i = 0; i < selects.length; i++) {
-            selects[i].classList.remove('brownBtnBckground');
-            selects[i].classList.remove('pinkBtnBckground');
-            selects[i].classList.remove('blueBtnBckground');
-            selects[i].classList.remove('greenBtnBckground');
-            selects[i].classList.remove('purpleBtnBckground');
-            selects[i].classList.add(btnBckgroundClass);
+        for (let i = 0; i < selectContainers.length; i++) {
+            selectContainers[i].classList.remove('brownBtnBckgroundForSelect');
+            selectContainers[i].classList.remove('pinkBtnBckgroundForSelect');
+            selectContainers[i].classList.remove('blueBtnBckgroundForSelect');
+            selectContainers[i].classList.remove('greenBtnBckgroundForSelect');
+            selectContainers[i].classList.remove('purpleBtnBckgroundForSelect');
+            selectContainers[i].classList.add(btnBckgroundClass+'ForSelect');
         }
     
         for (let i = 0; i < inputs.length; i++) {

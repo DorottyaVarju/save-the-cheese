@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Select from 'react-select';
 import '../css/CategoryAndNumOfLettersToChoose.css';
 import { useNavigate } from 'react-router-dom';
@@ -6,18 +6,38 @@ import ColorChange from './ColorChange.js';
 import FullscreenButton from './FullscreenButton';
 
 function CategoryAndNumOfLettersToChoose() {
+    const selectRef = useRef(null);
     let btnBckgroundClass = localStorage.getItem('btnBckgroundClass');
     let bodyBckgroundClass = localStorage.getItem('bodyBckgroundClass');
 
     document.body.classList.add(bodyBckgroundClass);
+
+    let bgColor;
+
+    switch (btnBckgroundClass) {
+        case 'pinkBtnBckground':
+            bgColor = '#8c3747';
+            break;
+        case 'blueBtnBckground':
+            bgColor = '#072ac8';
+            break;
+        case 'greenBtnBckground':
+            bgColor = '#1a5c3d';
+            break;
+        case 'purpleBtnBckground':
+            bgColor = '#480ca8';
+            break;
+        default:
+            bgColor = '#844923ff';
+    }
 
     localStorage.removeItem('formData');
 
     const [inputs, setInputs] = useState({});
     const navigate = useNavigate();
     const handleChange = (selectedOption) => {
-        const name = selectedOption.name; // Ezt a következő lépésben fogjuk definiálni
-        const value = selectedOption.value; // Ezt is a következő lépésben fogjuk definiálni
+        const name = selectedOption.name;
+        const value = selectedOption.value;
         setInputs(values => ({ ...values, [name]: value }));
     };
 
@@ -40,7 +60,6 @@ function CategoryAndNumOfLettersToChoose() {
         }
     };
 
-    // Opciók definiálása
     const categoryOptions = [
         { value: 'entertainment', label: 'Entertainment' },
         { value: 'nature', label: 'Nature' },
@@ -53,6 +72,45 @@ function CategoryAndNumOfLettersToChoose() {
         { value: 'medium', label: 'Medium' },
         { value: 'hard', label: 'Hard' },
     ];
+
+    const handleMenuOpen = () => {
+        setTimeout(() => {
+            const optionsContainer = document.body.querySelector('.react-select__menu');
+            if (optionsContainer) {
+                let bgClassName = (((document.getElementsByClassName('selectContainer')[0].className).split(' '))[1]).slice(0, -9);
+                const allOptions = optionsContainer.querySelectorAll('.react-select__option');
+                switch (bgClassName) {
+                    case 'pinkBtnBckground':
+                        bgColor = '#8c3747';
+                        break;
+                    case 'blueBtnBckground':
+                        bgColor = '#072ac8';
+                        break;
+                    case 'greenBtnBckground':
+                        bgColor = '#1a5c3d';
+                        break;
+                    case 'purpleBtnBckground':
+                        bgColor = '#480ca8';
+                        break;
+                    default:
+                        bgColor = '#844923ff';
+                }
+                allOptions.forEach(option => {
+                    option.style.backgroundColor = bgColor;
+                    option.style.color = '#fff88bff';
+                    option.onmouseover = () => {
+                        option.style.backgroundColor = '#fff88bff';
+                        option.style.color = '#844923ff';
+                    };
+                    option.onmouseout = () => {
+                        option.style.backgroundColor = bgColor;
+                        option.style.color = '#fff88bff';
+                    };
+                });
+            }
+        }, 0);
+    };
+
 
     return (
         <>
@@ -67,10 +125,13 @@ function CategoryAndNumOfLettersToChoose() {
 
                 <label>Select a category:</label>
                 <br />
-                <div className="selectContainer">
+                <div className={"selectContainer " + btnBckgroundClass + "ForSelect"}>
                     <Select
                         name="category"
+                        ref={selectRef}
+                        classNamePrefix="react-select"
                         options={categoryOptions}
+                        onMenuOpen={handleMenuOpen}
                         onChange={(option) => handleChange({ ...option, name: 'category' })}
                         isSearchable={false}
                         styles={{
@@ -81,7 +142,7 @@ function CategoryAndNumOfLettersToChoose() {
                                 padding: '10px 30px',
                                 borderRadius: '20px',
                                 border: 'none',
-                                backgroundColor: '#844923ff',
+                                backgroundColor: bgColor,
                                 cursor: 'pointer',
                                 color: '#fff88bff',
                                 fontSize: '18px',
@@ -120,11 +181,11 @@ function CategoryAndNumOfLettersToChoose() {
                             menu: (provided, state) => ({
                                 ...provided,
                                 width: '17rem',
-                                backgroundColor: state.isFocused ? '#ffdd57' : '#844923ff',
+                                backgroundColor: bgColor,
                             }),
                             option: (provided, state) => ({
                                 ...provided,
-                                backgroundColor: state.isFocused ? '#ffdd57' : '#844923ff',
+                                backgroundColor: state.isFocused ? '#fff88bff' : bgColor,
                                 color: state.isFocused ? '#844923ff' : '#fff88bff',
                             }),
                             indicatorSeparator: (provided) => ({
@@ -139,10 +200,13 @@ function CategoryAndNumOfLettersToChoose() {
 
                 <label>Select a level:</label>
                 <br />
-                <div className="selectContainer">
+                <div className={"selectContainer " + btnBckgroundClass + "ForSelect"}>
                     <Select
                         name="level"
+                        ref={selectRef}
+                        classNamePrefix="react-select"
                         options={levelOptions}
+                        onMenuOpen={handleMenuOpen}
                         onChange={(option) => handleChange({ ...option, name: 'level' })}
                         isSearchable={false}
                         styles={{
@@ -153,14 +217,13 @@ function CategoryAndNumOfLettersToChoose() {
                                 padding: '10px 30px',
                                 borderRadius: '20px',
                                 border: 'none',
-                                backgroundColor: '#844923ff',
+                                backgroundColor: bgColor,
                                 cursor: 'pointer',
                                 color: '#fff88bff',
                                 fontSize: '18px',
                                 fontWeight: 'bold',
                                 outline: 'none',
                                 marginTop: '8px',
-                                textAlign: 'center',
                                 minWidth: '264px',
                                 boxShadow: 'none',
                                 '&:hover': {
@@ -169,6 +232,8 @@ function CategoryAndNumOfLettersToChoose() {
                                 '&:focus': {
                                     boxShadow: 'none',
                                 },
+                                display: 'flex',
+                                justifyContent: 'center',
                             }),
                             singleValue: (provided) => ({
                                 ...provided,
@@ -191,11 +256,11 @@ function CategoryAndNumOfLettersToChoose() {
                             menu: (provided, state) => ({
                                 ...provided,
                                 width: '17rem',
-                                backgroundColor: state.isFocused ? '#ffdd57' : '#844923ff',
+                                backgroundColor: bgColor,
                             }),
                             option: (provided, state) => ({
                                 ...provided,
-                                backgroundColor: state.isFocused ? '#ffdd57' : '#844923ff',
+                                backgroundColor: state.isFocused ? '#fff88bff' : bgColor,
                                 color: state.isFocused ? '#844923ff' : '#fff88bff',
                             }),
                             indicatorSeparator: (provided) => ({

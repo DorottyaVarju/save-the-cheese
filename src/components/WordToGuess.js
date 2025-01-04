@@ -18,7 +18,7 @@ function WordToGuess() {
     }
 
     let buttons = document.getElementsByTagName('button');
-    let selects = document.getElementsByTagName('select');
+    let selectContainers = document.getElementsByClassName('selectContainer');
     let inputs = document.getElementsByTagName('input');
     let options = document.getElementsByTagName('option');
 
@@ -31,8 +31,8 @@ function WordToGuess() {
         }
     }
     
-    for (let i = 0; i < selects.length; i++) {
-        selects[i].classList.add(btnBckgroundClass);
+    for (let i = 0; i < selectContainers.length; i++) {
+        selectContainers[i].classList.add(btnBckgroundClass+'ForSelect');
     }
     
     for (let i = 0; i < inputs.length; i++) {
