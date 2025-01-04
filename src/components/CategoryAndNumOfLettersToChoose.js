@@ -95,12 +95,22 @@ function CategoryAndNumOfLettersToChoose() {
                     default:
                         bgColor = '#844923ff';
                 }
-                allOptions.forEach(option => {
-                    option.style.backgroundColor = bgColor;
-                    option.style.color = '#fff88bff';
+                allOptions.forEach((option, index) => {
+                    console.log(index);
+                    if (index !== 0) {
+                        option.style.backgroundColor = bgColor;
+                        option.style.color = '#fff88bff';
+                    } else {
+                        option.style.backgroundColor = '#fff88bff';
+                        option.style.color = '#844923ff';
+                    }
                     option.onmouseover = () => {
                         option.style.backgroundColor = '#fff88bff';
                         option.style.color = '#844923ff';
+                        if (index !== 0) {
+                            allOptions[0].style.backgroundColor = bgColor;
+                            allOptions[0].style.color = '#fff88bff';
+                        }
                     };
                     option.onmouseout = () => {
                         option.style.backgroundColor = bgColor;
@@ -125,7 +135,7 @@ function CategoryAndNumOfLettersToChoose() {
 
                 <label>Select a category:</label>
                 <br />
-                <div className={"selectContainer " + btnBckgroundClass + "ForSelect"}>
+                <div className={`selectContainer ${btnBckgroundClass !== null ? btnBckgroundClass + "ForSelect" : ""}`}>
                     <Select
                         name="category"
                         ref={selectRef}
