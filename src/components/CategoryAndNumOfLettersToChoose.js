@@ -12,6 +12,10 @@ function CategoryAndNumOfLettersToChoose() {
 
     document.body.classList.add(bodyBckgroundClass);
 
+    if(document.getElementsByClassName('App')[0] !== undefined) {
+        document.getElementsByClassName('App')[0].classList.remove('gameApp');
+    }
+
     let bgColor;
 
     switch (btnBckgroundClass) {
