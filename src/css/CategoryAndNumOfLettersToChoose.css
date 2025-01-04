@@ -31,7 +31,7 @@ button:hover {
     color: #844923ff;
 }
 
-select, input {
+input {
     box-sizing: border-box;
     height: 50px;
     padding: 10px 30px;
@@ -44,16 +44,9 @@ select, input {
     font-weight: bold;
     outline: none;
     margin-top: 8px;
-}
-
-input {
     cursor: text;
     text-align: center;
-    width: 14rem;
-}
-
-select option {
-    background-color:#844923ff;
+    width: 17rem;
 }
 
 #errorMsg {
@@ -61,5 +54,11 @@ select option {
     margin-top: 20px;
     height: 20px;
 }
- 
+
+div.selectContainer{
+    display: flex;
+    justify-content: center;
+}
+
+
  
