@@ -4,6 +4,7 @@ import '../css/CategoryAndNumOfLettersToChoose.css';
 import { useNavigate } from 'react-router-dom';
 import ColorChange from './ColorChange.js';
 import FullscreenButton from './FullscreenButton';
+import { FaPlay } from "react-icons/fa";
 
 function CategoryAndNumOfLettersToChoose() {
     const selectRef = useRef(null);
@@ -12,7 +13,7 @@ function CategoryAndNumOfLettersToChoose() {
 
     document.body.classList.add(bodyBckgroundClass);
 
-    if(document.getElementsByClassName('App')[0] !== undefined) {
+    if (document.getElementsByClassName('App')[0] !== undefined) {
         document.getElementsByClassName('App')[0].classList.remove('gameApp');
     }
 
@@ -46,6 +47,7 @@ function CategoryAndNumOfLettersToChoose() {
     };
 
     const [gamersName, setGamersName] = useState("");
+    const [consent, setConsent] = useState("");
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -59,7 +61,9 @@ function CategoryAndNumOfLettersToChoose() {
             document.getElementById('errorMsg').innerText = 'Please, select a category!';
         } else if (inputs.category !== undefined && inputs.level === undefined) {
             document.getElementById('errorMsg').innerText = 'Please, select a level!';
-        } else {
+        } else if(consent !== 'on') {
+            document.getElementById('errorMsg').innerText = 'Please confirm: If I provide my name, I agree that it will be stored during the game.';
+        }else {
             document.getElementById('errorMsg').innerText = 'Please, select a category and a level!';
         }
     };
@@ -131,9 +135,9 @@ function CategoryAndNumOfLettersToChoose() {
             <FullscreenButton />
             <h1>Feed the mouse - by guessing a word!</h1>
             <form onSubmit={handleSubmit}>
-                <label>Enter your name:</label>
+                <label>Enter a nickname:</label>
                 <br />
-                <input className={btnBckgroundClass} type="text" name="name" id="name" autoFocus autoComplete="off" value={gamersName}
+                <input className={btnBckgroundClass} type="text" name="name" id="name" maxLength={14} autoFocus autoComplete="off" value={gamersName}
                     onChange={(e) => setGamersName(e.target.value)} />
                 <br /><br />
 
@@ -201,6 +205,7 @@ function CategoryAndNumOfLettersToChoose() {
                                 ...provided,
                                 backgroundColor: state.isFocused ? '#fff88bff' : bgColor,
                                 color: state.isFocused ? '#844923ff' : '#fff88bff',
+                                cursor: 'pointer',
                             }),
                             indicatorSeparator: (provided) => ({
                                 ...provided,
@@ -276,6 +281,7 @@ function CategoryAndNumOfLettersToChoose() {
                                 ...provided,
                                 backgroundColor: state.isFocused ? '#fff88bff' : bgColor,
                                 color: state.isFocused ? '#844923ff' : '#fff88bff',
+                                cursor: 'pointer',
                             }),
                             indicatorSeparator: (provided) => ({
                                 ...provided,
@@ -285,9 +291,13 @@ function CategoryAndNumOfLettersToChoose() {
                         placeholder="Select a level"
                     />
                 </div>
+                <div className="chkbox">
+                    <input type="checkbox" id="consent" name="consent" onChange={(e) => setConsent(e.target.value)}/>&nbsp;
+                    <label for="consent">If I provide my name, I agree that it will be stored during the game.</label>
+                </div>
                 <br /><br />
-
-                <button className={btnBckgroundClass} type="submit">Let's start!</button>
+                <button className={btnBckgroundClass} id="submitBtn" type="submit"><FaPlay />&nbsp;START
+                </button>
                 <p id="errorMsg"></p>
             </form>
             <ColorChange />

@@ -1,4 +1,5 @@
-form, h1 {
+form,
+h1 {
     color: #fff88bff;
     font-size: 18px;
     font-weight: bold;
@@ -18,7 +19,7 @@ button {
     padding: 10px 30px;
     border-radius: 20px;
     border: none;
-    background-color:#844923ff;
+    background-color: #844923ff;
     cursor: pointer;
     background: transparent;
     color: #fff88bff;
@@ -31,13 +32,19 @@ button:hover {
     color: #844923ff;
 }
 
+#submitBtn {
+    height: 50px;
+    width: 150px;
+    font-size: 18px;
+}
+
 input {
     box-sizing: border-box;
     height: 50px;
     padding: 10px 30px;
     border-radius: 20px;
     border: none;
-    background-color:#844923ff;
+    background-color: #844923ff;
     cursor: pointer;
     color: #fff88bff;
     font-size: 18px;
@@ -49,16 +56,34 @@ input {
     width: 17rem;
 }
 
+#name {
+    min-width: 264px;
+}
+
 #errorMsg {
     color: rgb(255, 0, 0);
     margin-top: 20px;
     height: 20px;
 }
 
-div.selectContainer{
+div.selectContainer {
     display: flex;
     justify-content: center;
 }
 
+.chkbox{
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 40px;
+}
 
- 
+.chkbox > input{
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+}
+
+.chkbox > label{
+    font-size: 14px;
+}
