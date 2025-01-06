@@ -4,11 +4,10 @@ h1 {
     font-size: 18px;
     font-weight: bold;
     text-align: center;
-    margin-top: 60px;
 }
 
 h1 {
-    margin-top: 100px;
+    margin-top: 50px;
     height: 20px;
 }
 
@@ -64,6 +63,7 @@ input {
     color: rgb(255, 0, 0);
     margin-top: 20px;
     height: 20px;
+    font-size: 14px;
 }
 
 div.selectContainer {
@@ -82,8 +82,19 @@ div.selectContainer {
     height: 20px;
     width: 20px;
     cursor: pointer;
+    accent-color: #844923ff;
 }
 
 .chkbox > label{
     font-size: 14px;
+}
+
+@media only screen and (max-width: 600px) {
+    #errorMsg {
+        font-size: 12.5px;
+    }
+
+    .chkbox > label{
+        font-size: 10px;
+    }
 }

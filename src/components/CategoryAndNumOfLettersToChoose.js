@@ -53,17 +53,18 @@ function CategoryAndNumOfLettersToChoose() {
         event.preventDefault();
         const formData = new FormData(event.target);
         const data = Object.fromEntries(formData);
-
         localStorage.setItem('formData', JSON.stringify(data));
         if (inputs.category !== undefined && inputs.level !== undefined) {
-            navigate(`/game`);
+            if(consent !== 'on'){
+                document.getElementById('errorMsg').innerText = 'Please confirm: By providing a nickname, I consent to having it stored in local storage.';
+            } else {
+                navigate(`/game`);
+            }
         } else if (inputs.category === undefined && inputs.level !== undefined) {
             document.getElementById('errorMsg').innerText = 'Please, select a category!';
         } else if (inputs.category !== undefined && inputs.level === undefined) {
             document.getElementById('errorMsg').innerText = 'Please, select a level!';
-        } else if(consent !== 'on') {
-            document.getElementById('errorMsg').innerText = 'Please confirm: If I provide my name, I agree that it will be stored during the game.';
-        }else {
+        } else {
             document.getElementById('errorMsg').innerText = 'Please, select a category and a level!';
         }
     };
@@ -104,7 +105,6 @@ function CategoryAndNumOfLettersToChoose() {
                         bgColor = '#844923ff';
                 }
                 allOptions.forEach((option, index) => {
-                    console.log(index);
                     if (index !== 0) {
                         option.style.backgroundColor = bgColor;
                         option.style.color = '#fff88bff';
@@ -141,7 +141,7 @@ function CategoryAndNumOfLettersToChoose() {
                     onChange={(e) => setGamersName(e.target.value)} />
                 <br /><br />
 
-                <label>Select a category:</label>
+                <label><span style={{color: 'red'}}>*</span>&nbsp;Select a category:</label>
                 <br />
                 <div className={`selectContainer ${btnBckgroundClass !== null ? btnBckgroundClass + "ForSelect" : ""}`}>
                     <Select
@@ -217,7 +217,7 @@ function CategoryAndNumOfLettersToChoose() {
                 </div>
                 <br /><br />
 
-                <label>Select a level:</label>
+                <label><span style={{color: 'red'}}>*</span>&nbsp;Select a level:</label>
                 <br />
                 <div className={"selectContainer " + btnBckgroundClass + "ForSelect"}>
                     <Select
@@ -293,7 +293,7 @@ function CategoryAndNumOfLettersToChoose() {
                 </div>
                 <div className="chkbox">
                     <input type="checkbox" id="consent" name="consent" onChange={(e) => setConsent(e.target.value)}/>&nbsp;
-                    <label for="consent">If I provide my name, I agree that it will be stored during the game.</label>
+                    <label htmlFor="consent"><span style={{color: 'red'}}>*</span>&nbsp;By providing a nickname, I consent to having it stored in local storage.</label>
                 </div>
                 <br /><br />
                 <button className={btnBckgroundClass} id="submitBtn" type="submit"><FaPlay />&nbsp;START
