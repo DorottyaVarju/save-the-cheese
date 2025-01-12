@@ -47,7 +47,10 @@ function CategoryAndNumOfLettersToChoose() {
     };
 
     const [gamersName, setGamersName] = useState("");
-    const [consent, setConsent] = useState("");
+    const [consent, setConsent] = useState(false);
+    const handleCheckboxChange = (e) => {
+        setConsent(e.target.checked);
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -55,7 +58,7 @@ function CategoryAndNumOfLettersToChoose() {
         const data = Object.fromEntries(formData);
         localStorage.setItem('formData', JSON.stringify(data));
         if (inputs.category !== undefined && inputs.level !== undefined) {
-            if(consent !== 'on'){
+            if(consent !== true){
                 document.getElementById('errorMsg').innerText = 'Please confirm: By providing a nickname, I consent to having it stored in local storage.';
             } else {
                 navigate(`/game`);
@@ -292,7 +295,7 @@ function CategoryAndNumOfLettersToChoose() {
                     />
                 </div>
                 <div className="chkbox">
-                    <input type="checkbox" id="consent" name="consent" onChange={(e) => setConsent(e.target.value)}/>&nbsp;
+                    <input type="checkbox" className={btnBckgroundClass} id="consent" name="consent" onChange={handleCheckboxChange} />&nbsp;
                     <label htmlFor="consent"><span style={{color: 'red'}}>*</span>&nbsp;By providing a nickname, I consent to having it stored in local storage.</label>
                 </div>
                 <br /><br />
