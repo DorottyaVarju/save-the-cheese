@@ -5,6 +5,9 @@ import LettersToTry from './LettersToTry.js';
 import FullscreenButton from './FullscreenButton';
 import HangmanDisplay from './HangmanDisplay.js';
 import ColorChange from './ColorChange.js';
+import CountDown from './CountDown.js';
+import { TbClockCheck } from "react-icons/tb";
+import Modal from "./Modal.js";
 
 import { natureAndEasy, natureAndMedium, natureAndDifficult, entertainmentAndEasy, entertainmentAndMedium, entertainmentAndDifficult, societyAndEasy, societyAndMedium, societyAndDifficult, mixedAndEasy, mixedAndMedium, mixedAndDifficult, } from '../Words.js';
 
@@ -50,12 +53,16 @@ function WordToGuess() {
     const data = JSON.parse(localStorage.getItem('formData'));
     let category = 'mixed';
     let level = 'easy';
-    let gamerName = '';
+    const gamersNickName = localStorage.getItem('gamersNickName');
+    if(gamersNickName !== null) {
+        if (gamersNickName.startsWith('"') && gamersNickName.endsWith('"')) {
+            gamersNickName = gamersNickName.slice(1, -1);
+        }
+    }
 
     if(data !== null) {
         category = JSON.stringify(data.category, null, 2);
         level = JSON.stringify(data.level, null, 2);
-        gamerName = JSON.stringify(data.name, null, 2);
 
         if(category !== undefined) {
             if (category.startsWith('"') && category.endsWith('"')) {
@@ -72,18 +79,17 @@ function WordToGuess() {
         } else {
             level = 'easy';
         }
-
-        if(gamerName !== undefined) {
-            if (gamerName.startsWith('"') && gamerName.endsWith('"')) {
-                gamerName = gamerName.slice(1, -1);
-            }
-        }
     }
 
     const [linesForWordToGuess, setLinesForWordToGuess] = useState([]);
     const [word, setWord] = useState([]);
     const [goodGuess, setGoodGuess] = useState(0);
     const [wordSelected, setWordSelected] = useState(false);
+    const [restartKey, setRestartKey] = useState(0); // Kulcs az újraindításhoz
+    const initialTime = 10000;
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
     let wordsToChoseFrom;
 
     switch (category) {
@@ -105,8 +111,8 @@ function WordToGuess() {
 
     function returnAWordToGuess() {
         let indexOfRandomWord = Math.floor(Math.random() * setOfWords.length);
-
         setGoodGuess(0);
+        setRestartKey((prevKey) => prevKey + 1);
 
         setOfWords.forEach(searchForTheValueFromSetOfWordsWithTheIndexOfRandomWord);
 
@@ -167,22 +173,45 @@ function WordToGuess() {
         }
     };
 
+    const uniqueLetters = new Set();
+
+    for (let i = 0; i < word.length; i++) {
+        const letter = word[i].toLowerCase();
+        if (/[a-zA-Z]/.test(letter)) {
+            uniqueLetters.add(letter);
+        }
+    }
+
+    const storedData = localStorage.getItem('bestTimes');
+    const bestTimes = storedData ? JSON.parse(storedData) : [];
+    let bestTimesLayout = bestTimes.map((bestTime, index) => {
+        return (
+            <li key={index}>
+                {bestTime.name}&nbsp;&nbsp;{bestTime.time}
+            </li>
+        );
+    });
+
     return (
         <>
             <div id="gnameAndWordAndFullscreen">
-                <h1 id="gamerName">{gamerName !== '' ? 'Hi, '+gamerName+'!' : ''}</h1>
+                <div>
+                    {gamersNickName !== null ? <h1 id="gamerName">Hi, {gamersNickName}!</h1> : null}
+                    <CountDown goodGuess={goodGuess} word={word} uniqueLettersSize={uniqueLetters.size} initialTime={initialTime} restartKey={restartKey} gamersNickName = {gamersNickName}></CountDown>
+                    <TbClockCheck className="bestTimesClockIcon" onClick={openModal}/>
+                </div>             
                 <ul>
                     {linesForWordToGuess}
                     <li className="letterAndLineContainer">
                         <span className="imgAboveLine">
-                            <img src={goodGuess < {word}.length ? 'images/xmark.png' : 'images/checkmark.png'} alt="mark" id="mark"></img>
+                            <img src={goodGuess > 0 && ((word.length !== uniqueLetters.size) ? goodGuess === uniqueLetters.size : goodGuess === word.length) ? 'images/checkmark.png' : 'images/xmark.png'} alt="mark" id="mark"></img>
                         </span>
                     </li>
                 </ul>
                 <FullscreenButton />
             </div>
             <div id="drawingDiv">
-                <img className="mouse" id="mouse" alt="mouse" src={goodGuess < {word}.length ? 'images/yescheese.png' : 'images/mouse.png'} title="mouse"></img>
+                <img className="mouse" id="mouse" alt="mouse" src={goodGuess > 0 && ((word.length !== uniqueLetters.size) ? goodGuess === uniqueLetters.size : goodGuess === word.length) ? 'images/yescheese.png' : 'images/mouse.png'} title="mouse"></img>
                 <div id="ladderAndCheese">
                     {wordSelected && <HangmanDisplay goodGuess={goodGuess} word={word}></HangmanDisplay>}
                     <img className="cheese" src='images/cheese.png' alt="cheese" title="cheese"></img>
@@ -196,7 +225,10 @@ function WordToGuess() {
             <div id="selectedCatAndLevelAndColor">
                 <ColorChange />
                 <h1>Selected category: {category !== undefined ? category.toUpperCase() : ''} &nbsp;&nbsp; Selected level: {level !== undefined ? level.toUpperCase() : ''}</h1>
-            </div>  
+            </div>
+            <Modal isOpen={isModalOpen} onClose={closeModal} title="Best Times">
+                <ol id="bestTimesOL">{bestTimesLayout}</ol>
+            </Modal>  
         </>
     )
 

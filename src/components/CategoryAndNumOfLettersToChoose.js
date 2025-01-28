@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import ColorChange from './ColorChange.js';
 import FullscreenButton from './FullscreenButton';
 import { FaPlay } from "react-icons/fa";
+import ClearLocalStorageButton from './ClearLocalStorageButton';
 
 function CategoryAndNumOfLettersToChoose() {
     const selectRef = useRef(null);
@@ -36,6 +37,7 @@ function CategoryAndNumOfLettersToChoose() {
             bgColor = '#844923ff';
     }
 
+    const gamersNickName = localStorage.getItem('gamersNickName');
     localStorage.removeItem('formData');
 
     const [inputs, setInputs] = useState({});
@@ -46,7 +48,7 @@ function CategoryAndNumOfLettersToChoose() {
         setInputs(values => ({ ...values, [name]: value }));
     };
 
-    const [gamersName, setGamersName] = useState("");
+    const [gamersName, setGamersName] = useState(gamersNickName || '');
     const [consent, setConsent] = useState(false);
     const handleCheckboxChange = (e) => {
         setConsent(e.target.checked);
@@ -56,9 +58,17 @@ function CategoryAndNumOfLettersToChoose() {
         event.preventDefault();
         const formData = new FormData(event.target);
         const data = Object.fromEntries(formData);
+
+        const gamersNickName = data.name;
+        if (gamersNickName !== '') {
+            localStorage.setItem('gamersNickName', gamersNickName);
+        } else {
+            localStorage.removeItem('gamersNickName', gamersNickName);
+        }
+
         localStorage.setItem('formData', JSON.stringify(data));
         if (inputs.category !== undefined && inputs.level !== undefined) {
-            if(consent !== true){
+            if (consent !== true) {
                 document.getElementById('errorMsg').innerText = 'Please confirm: By providing a nickname, I consent to having it stored in local storage.';
             } else {
                 navigate(`/game`);
@@ -135,16 +145,19 @@ function CategoryAndNumOfLettersToChoose() {
 
     return (
         <>
-            <FullscreenButton />
+            <div className="fullScrnAndClearStorageBtn">
+                <ClearLocalStorageButton />
+                <FullscreenButton />
+            </div>
             <h1>Feed the mouse - by guessing a word!</h1>
             <form onSubmit={handleSubmit}>
                 <label>Enter a nickname:</label>
                 <br />
-                <input className={btnBckgroundClass} type="text" name="name" id="name" maxLength={14} autoFocus autoComplete="off" value={gamersName}
+                <input className={btnBckgroundClass} type="text" name="name" id="name" maxLength={10} autoFocus autoComplete="off" value={gamersName}
                     onChange={(e) => setGamersName(e.target.value)} />
                 <br /><br />
 
-                <label><span style={{color: 'red'}}>*</span>&nbsp;Select a category:</label>
+                <label>Select a category:&nbsp;<span style={{ color: 'red' }}>*</span></label>
                 <br />
                 <div className={`selectContainer ${btnBckgroundClass !== null ? btnBckgroundClass + "ForSelect" : ""}`}>
                     <Select
@@ -220,7 +233,7 @@ function CategoryAndNumOfLettersToChoose() {
                 </div>
                 <br /><br />
 
-                <label><span style={{color: 'red'}}>*</span>&nbsp;Select a level:</label>
+                <label>Select a level:&nbsp;<span style={{ color: 'red' }}>*</span></label>
                 <br />
                 <div className={"selectContainer " + btnBckgroundClass + "ForSelect"}>
                     <Select
@@ -296,7 +309,7 @@ function CategoryAndNumOfLettersToChoose() {
                 </div>
                 <div className="chkbox">
                     <input type="checkbox" className={btnBckgroundClass} id="consent" name="consent" onChange={handleCheckboxChange} />&nbsp;
-                    <label htmlFor="consent"><span style={{color: 'red'}}>*</span>&nbsp;By providing a nickname, I consent to having it stored in local storage.</label>
+                    <label htmlFor="consent">By providing a nickname, I consent to having it stored in local storage.&nbsp;<span style={{ color: 'red' }}>*</span></label>
                 </div>
                 <br /><br />
                 <button className={btnBckgroundClass} id="submitBtn" type="submit"><FaPlay />&nbsp;START

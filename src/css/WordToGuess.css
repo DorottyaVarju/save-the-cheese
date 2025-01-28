@@ -119,6 +119,14 @@ div#selectedCatAndLevel > h1 {
     margin: 10px;
 }
 
+.bestTimesClockIcon{
+    color: #fff88bff;
+    font-size: 30px;
+    margin: 10px;
+    display: flex;
+    cursor: pointer;
+}
+
 @media only screen and (max-width: 800px) {
 
     #buttonDiv {
@@ -135,6 +143,10 @@ div#selectedCatAndLevel > h1 {
 
     div#selectedCatAndLevelAndColor > h1, #gamerName {
         font-size: 12px;
+    }
+
+    .bestTimesClockIcon{
+        font-size: 22px;
     }
 
     #selectedCatAndLevelAndColor {

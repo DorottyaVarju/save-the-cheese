@@ -30,7 +30,6 @@ form  {
 }
 
 #fullScreenBtn{
-  grid-area: fsb;
   justify-self: end;
   width: 30px;
   height: 30px;
@@ -38,12 +37,28 @@ form  {
   cursor: pointer;
 }
 
-#fullScreenBtn:hover{
+.fullScrnAndClearStorageBtn{
+  grid-area: fsb;
+  display: flex;
+  justify-content: space-between;
+}
+
+.delLocalStorageIcon{
+  margin: 10px;
+  font-size: 30px;
+  color: #fff88bff;
+  cursor: pointer;
+}
+
+#fullScreenBtn:hover, .delLocalStorageIcon:hover{
   filter: sepia(1) saturate(500%) hue-rotate(-20deg) brightness(80%);
 }
 
 @media only screen and (max-width: 768px) {
   #colorChange{
       justify-self: center;
+  }
+  .delLocalStorageIcon{
+    font-size: 22px;
   }
 }
