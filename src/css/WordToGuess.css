@@ -1,10 +1,11 @@
 .gameApp {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: 10% auto 2.5% auto 4%;
+    grid-template-rows: 10% 5% auto 2.5% auto 4%;
     grid-gap: 14px;
     grid-template-areas: 
       "gwf gwf gwf gwf gwf gwf gwf gwf gwf gwf gwf gwf"
+      "ct ct ct ct ct ct ct ct ct ct ct ct"
       "dd dd dd dd dd dd dd dd dd dd dd dd"
       "bd bd bd bd bd bd bd bd bd bd bd bd"
       "e e e e e e e e e e e e"
@@ -15,6 +16,10 @@
     grid-area: gwf;
     display: flex;
     justify-content: space-between;
+}
+
+#congratText{
+    grid-area: ct;
 }
 
 #drawingDiv{
@@ -125,6 +130,10 @@ div#selectedCatAndLevel > h1 {
     margin: 10px;
     display: flex;
     cursor: pointer;
+}
+
+.bestTimesClockIcon:hover{
+    filter: sepia(1) saturate(500%) hue-rotate(-20deg) brightness(80%);
 }
 
 @media only screen and (max-width: 800px) {

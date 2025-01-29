@@ -10,6 +10,7 @@ import { TbClockCheck } from "react-icons/tb";
 import Modal from "./Modal.js";
 
 import { natureAndEasy, natureAndMedium, natureAndDifficult, entertainmentAndEasy, entertainmentAndMedium, entertainmentAndDifficult, societyAndEasy, societyAndMedium, societyAndDifficult, mixedAndEasy, mixedAndMedium, mixedAndDifficult, } from '../Words.js';
+import CongratText from "./CongratText.js";
 
 function WordToGuess() {
     let btnBckgroundClass = localStorage.getItem('btnBckgroundClass');
@@ -53,6 +54,7 @@ function WordToGuess() {
     const data = JSON.parse(localStorage.getItem('formData'));
     let category = 'mixed';
     let level = 'easy';
+    let countDownChk = false;
     const gamersNickName = localStorage.getItem('gamersNickName');
     if(gamersNickName !== null) {
         if (gamersNickName.startsWith('"') && gamersNickName.endsWith('"')) {
@@ -63,7 +65,7 @@ function WordToGuess() {
     if(data !== null) {
         category = JSON.stringify(data.category, null, 2);
         level = JSON.stringify(data.level, null, 2);
-
+        countDownChk = JSON.stringify(data.countDown, null, 2);
         if(category !== undefined) {
             if (category.startsWith('"') && category.endsWith('"')) {
                 category = category.slice(1, -1);
@@ -86,11 +88,11 @@ function WordToGuess() {
     const [goodGuess, setGoodGuess] = useState(0);
     const [wordSelected, setWordSelected] = useState(false);
     const [restartKey, setRestartKey] = useState(0); // Kulcs az újraindításhoz
-    const initialTime = 10000;
     const [isModalOpen, setIsModalOpen] = useState(false);
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
     let wordsToChoseFrom;
+    let initialTime;
 
     switch (category) {
         case 'nature':
@@ -107,9 +109,25 @@ function WordToGuess() {
             break;
     }
 
+    switch (level) {
+        case 'easy':
+            initialTime = 45000;
+            break;
+        case 'medium':
+            initialTime = 90000;            
+            break;
+        case 'hard':
+            initialTime = 150000;            
+            break;
+        default:
+            initialTime = 45000;            
+            break;
+    }
+
     const setOfWords = wordsToChoseFrom[level];
 
     function returnAWordToGuess() {
+        localStorage.removeItem('currentResult');
         let indexOfRandomWord = Math.floor(Math.random() * setOfWords.length);
         setGoodGuess(0);
         setRestartKey((prevKey) => prevKey + 1);
@@ -185,9 +203,17 @@ function WordToGuess() {
     const storedData = localStorage.getItem('bestTimes');
     const bestTimes = storedData ? JSON.parse(storedData) : [];
     let bestTimesLayout = bestTimes.map((bestTime, index) => {
+        let bestTimeMinSec, min, sec;
+        if(bestTime.time>60){
+            min = bestTime.time/60;
+            sec = bestTime.time - (min*60);
+            bestTimeMinSec = min + 'm ' + sec + 's';
+        } else {
+            bestTimeMinSec = bestTime.time + 's';
+        }
         return (
             <li key={index}>
-                {bestTime.name}&nbsp;&nbsp;{bestTime.time}
+                {bestTime.name}&nbsp;&nbsp;{bestTimeMinSec}
             </li>
         );
     });
@@ -197,8 +223,8 @@ function WordToGuess() {
             <div id="gnameAndWordAndFullscreen">
                 <div>
                     {gamersNickName !== null ? <h1 id="gamerName">Hi, {gamersNickName}!</h1> : null}
-                    <CountDown goodGuess={goodGuess} word={word} uniqueLettersSize={uniqueLetters.size} initialTime={initialTime} restartKey={restartKey} gamersNickName = {gamersNickName}></CountDown>
-                    <TbClockCheck className="bestTimesClockIcon" onClick={openModal}/>
+                    {countDownChk && <CountDown goodGuess={goodGuess} word={word} uniqueLettersSize={uniqueLetters.size} initialTime={initialTime} restartKey={restartKey} gamersNickName = {gamersNickName}></CountDown>}
+                    {countDownChk && <TbClockCheck className="bestTimesClockIcon" onClick={openModal}/>}
                 </div>             
                 <ul>
                     {linesForWordToGuess}
@@ -210,6 +236,7 @@ function WordToGuess() {
                 </ul>
                 <FullscreenButton />
             </div>
+            {1===0 && <CongratText goodGuess={goodGuess} uniqueLettersSize={uniqueLetters.size} word={word}></CongratText>}
             <div id="drawingDiv">
                 <img className="mouse" id="mouse" alt="mouse" src={goodGuess > 0 && ((word.length !== uniqueLetters.size) ? goodGuess === uniqueLetters.size : goodGuess === word.length) ? 'images/yescheese.png' : 'images/mouse.png'} title="mouse"></img>
                 <div id="ladderAndCheese">
@@ -226,9 +253,9 @@ function WordToGuess() {
                 <ColorChange />
                 <h1>Selected category: {category !== undefined ? category.toUpperCase() : ''} &nbsp;&nbsp; Selected level: {level !== undefined ? level.toUpperCase() : ''}</h1>
             </div>
-            <Modal isOpen={isModalOpen} onClose={closeModal} title="Best Times">
+            {countDownChk &&<Modal isOpen={isModalOpen} onClose={closeModal} title="Best Times">
                 <ol id="bestTimesOL">{bestTimesLayout}</ol>
-            </Modal>  
+            </Modal>}
         </>
     )
 

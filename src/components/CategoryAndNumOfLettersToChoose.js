@@ -50,8 +50,13 @@ function CategoryAndNumOfLettersToChoose() {
 
     const [gamersName, setGamersName] = useState(gamersNickName || '');
     const [consent, setConsent] = useState(false);
-    const handleCheckboxChange = (e) => {
+    const [countDownChk, setCountDownChk] = useState(false);
+    const handleCheckboxChangeConsent = (e) => {
         setConsent(e.target.checked);
+    };
+
+    const handleCheckboxChangeCountDown = (e) => {
+        setCountDownChk(e.target.checked);
     };
 
     const handleSubmit = (event) => {
@@ -307,9 +312,15 @@ function CategoryAndNumOfLettersToChoose() {
                         placeholder="Select a level"
                     />
                 </div>
-                <div className="chkbox">
-                    <input type="checkbox" className={btnBckgroundClass} id="consent" name="consent" onChange={handleCheckboxChange} />&nbsp;
-                    <label htmlFor="consent">By providing a nickname, I consent to having it stored in local storage.&nbsp;<span style={{ color: 'red' }}>*</span></label>
+                <div className="chkboxes">
+                    <div className="chkbox">
+                        <input type="checkbox" className={btnBckgroundClass} id="consent" name="consent" onChange={handleCheckboxChangeConsent} />&nbsp;
+                        <label htmlFor="consent">By providing a nickname, I consent to having it stored in local storage.&nbsp;<span style={{ color: 'red' }}>*</span></label>
+                    </div>
+                    <div className="chkbox">
+                        <input type="checkbox" className={btnBckgroundClass} id="countDown" name="countDown" onChange={handleCheckboxChangeCountDown} />&nbsp;
+                        <label htmlFor="countDown">Countdown mode (45 seconds for easy, 1.5 minutes for medium, 2.5 minutes for hard)</label>
+                    </div>
                 </div>
                 <br /><br />
                 <button className={btnBckgroundClass} id="submitBtn" type="submit"><FaPlay />&nbsp;START

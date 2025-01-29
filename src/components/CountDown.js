@@ -6,11 +6,12 @@ const CountdownTimer = (props) => {
     const [timeRemaining, setTimeRemaining] = useState(initialTime);
 
     useEffect(() => {
+        //localStorage.removeItem('currentResult');
         setTimeRemaining(initialTime);
     }, [restartKey]);
 
     useEffect(() => {
-        let isSaved = false; // Guard flag
+        let isSaved = false;
         if (timeRemaining > 0) {
             const countdownInterval = setInterval(() => {
                 setTimeRemaining((prevTime) => {
@@ -18,7 +19,7 @@ const CountdownTimer = (props) => {
 
                     if (updatedTime <= 0 && ((word.length !== uniqueLettersSize) ? goodGuess !== uniqueLettersSize : goodGuess !== word.length)) {
                         clearInterval(countdownInterval);
-
+                        //localStorage.removeItem('currentResult');
                         Array.from(document.getElementsByClassName('letters')).forEach((letter) => {
                             letter.classList.add('untriedLetter');
                         });
@@ -28,7 +29,6 @@ const CountdownTimer = (props) => {
                             elements[i].innerText = word[i];
                         }
                         document.getElementById('mark').style.opacity = 1;
-
                         return 0;
                     }
 
@@ -41,18 +41,22 @@ const CountdownTimer = (props) => {
                             const bestTimes = storedData ? JSON.parse(storedData) : [];
                             const newBestTime = {
                                 name: (gamersNickName !== null) ? gamersNickName : 'Anonymous',
-                                time: initialTime - prevTime
+                                time: (initialTime - prevTime)/1000
                             };
 
                             bestTimes.push(newBestTime);
                             bestTimes.sort((a, b) => a.time - b.time);
+                            const rank = bestTimes.lastIndexOf(newBestTime) + 1;
+                            const currentResult = [rank, newBestTime.name, newBestTime.time];
 
                             if (bestTimes.length > 10) {
                                 bestTimes.length = 10;
                             }
 
+                            localStorage.setItem('currentResult', JSON.stringify(currentResult));
                             localStorage.setItem('bestTimes', JSON.stringify(bestTimes));
-                            console.log("Best times updated:", bestTimes);
+                            // console.log("Best times updated:", bestTimes);
+                            // console.log(currentResult);
                         }
                         return prevTime;
                     }
