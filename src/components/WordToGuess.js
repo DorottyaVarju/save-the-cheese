@@ -253,8 +253,8 @@ function WordToGuess() {
                 <ColorChange />
                 <h1>Selected category: {category !== undefined ? category.toUpperCase() : ''} &nbsp;&nbsp; Selected level: {level !== undefined ? level.toUpperCase() : ''}</h1>
             </div>
-            {countDownChk &&<Modal isOpen={isModalOpen} onClose={closeModal} title="Best Times">
-                <ol id="bestTimesOL">{bestTimesLayout}</ol>
+            {countDownChk && <Modal isOpen={isModalOpen} onClose={closeModal} title="Best Times">
+                <ol id="bestTimesOL">{(bestTimesLayout.length > 0) ? bestTimesLayout : 'There are no best times yet.'}</ol>
             </Modal>}
         </>
     )

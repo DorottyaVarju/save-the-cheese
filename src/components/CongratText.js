@@ -8,7 +8,6 @@ const CongratText = ({ restartKey, goodGuess, uniqueLettersSize, word }) => {
     
     useEffect(() => {
         const storedCRData = localStorage.getItem('currentResult');
-        console.log(storedCRData);
         const currentResult = storedCRData ? JSON.parse(storedCRData) : [];
         console.log(currentResult);
         if(currentResult.length !== 0){
