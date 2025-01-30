@@ -22,19 +22,18 @@ const CongratText = ({ restartKey, goodGuess, uniqueLettersSize, word }) => {
             setBestTime(bestTimeMinSecCR);
             setName(currentResult[1]);
             setRank(currentResult[0]);
+            if(bestTime !== '' && ((word.length !== uniqueLettersSize) ? goodGuess === uniqueLettersSize : goodGuess === word.length)){
+                document.getElementById('congratText').style.opacity = 1;
+            }
         }
     }, [goodGuess]);
 
-    if(bestTime !== '' && ((word.length !== uniqueLettersSize) ? goodGuess === uniqueLettersSize : goodGuess === word.length)){
-        return (
-            <div id="congratText">
-                <h4>Congratulations, {name}, you made it to the top 10 list!</h4>
-                <h6>Time: {bestTime}, Rank: {rank}.</h6>
-            </div>
-        );
-    } else {
-        return null;
-    }
+    return (
+        <div id="congratText">
+            <h4>Congratulations, {name}, you made it to the top 10 list!</h4>
+            <h6>Time: {bestTime}, Rank: {rank}.</h6>
+        </div>
+    );
 };
 
 export default CongratText;

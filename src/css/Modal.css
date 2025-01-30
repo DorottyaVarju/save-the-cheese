@@ -20,13 +20,15 @@
   border-radius: 8px;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  grid-template-rows: 15% auto 15%;
+  grid-template-rows: 15% 10% 2% auto 15%;
   grid-template-areas:
-    "mh mh mh mh mh mh mh mh mh mh mh mh"
-    "mc mc mc mc mc mc mc mc mc mc mc mc"
-    "mf mf mf mf mf mf mf mf mf mf mf mf";
+    "mh"
+    "h5"
+    "t10"
+    "mc"
+    "mf";
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  padding: 20px;
+  padding: 50px;
 }
 
 .modal-header {
@@ -37,6 +39,14 @@
   ;
   margin-bottom: 10px;
   grid-area: mh;
+}
+
+h5{
+  grid-area: h5;
+}
+
+#top10{
+  grid-area: t10;
 }
 
 .modal-content {
@@ -50,4 +60,24 @@
 
 ol>li {
   text-align: start;
+}
+
+.brownBodyBckground {
+  background-color: #533e08d7;
+}
+
+.pinkBodyBckground {
+  background-color: #b5485d;
+}
+
+.blueBodyBckground {
+  background-color: #184a87;
+}
+
+.greenBodyBckground {
+  background-color: #2e785a;
+}
+
+.purpleBodyBckground {
+  background-color: #53228c;
 }

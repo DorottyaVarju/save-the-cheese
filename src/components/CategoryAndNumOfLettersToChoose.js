@@ -50,13 +50,13 @@ function CategoryAndNumOfLettersToChoose() {
 
     const [gamersName, setGamersName] = useState(gamersNickName || '');
     const [consent, setConsent] = useState(false);
-    const [countDownChk, setCountDownChk] = useState(false);
+    const [timerChk, setTimerChk] = useState(false);
     const handleCheckboxChangeConsent = (e) => {
         setConsent(e.target.checked);
     };
 
-    const handleCheckboxChangeCountDown = (e) => {
-        setCountDownChk(e.target.checked);
+    const handleCheckboxChangeTimer = (e) => {
+        setTimerChk(e.target.checked);
     };
 
     const handleSubmit = (event) => {
@@ -314,12 +314,12 @@ function CategoryAndNumOfLettersToChoose() {
                 </div>
                 <div className="chkboxes">
                     <div className="chkbox">
-                        <input type="checkbox" className={btnBckgroundClass} id="consent" name="consent" onChange={handleCheckboxChangeConsent} />&nbsp;
-                        <label htmlFor="consent">By providing a nickname, I consent to having it stored in local storage.&nbsp;<span style={{ color: 'red' }}>*</span></label>
+                        <input type="checkbox" className={btnBckgroundClass} id="timer" name="timer" onChange={handleCheckboxChangeTimer} />&nbsp;
+                        <label htmlFor="timer">Timer mode</label>
                     </div>
                     <div className="chkbox">
-                        <input type="checkbox" className={btnBckgroundClass} id="countDown" name="countDown" onChange={handleCheckboxChangeCountDown} />&nbsp;
-                        <label htmlFor="countDown">Countdown mode (45 seconds for easy, 1.5 minutes for medium, 2.5 minutes for hard)</label>
+                        <input type="checkbox" className={btnBckgroundClass} id="consent" name="consent" onChange={handleCheckboxChangeConsent} />&nbsp;
+                        <label htmlFor="consent">By providing a nickname, I consent to having it stored in local storage.&nbsp;<span style={{ color: 'red' }}>*</span></label>
                     </div>
                 </div>
                 <br /><br />

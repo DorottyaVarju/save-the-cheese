@@ -1,4 +1,4 @@
-div.countdownTimerContainer{
+div.timerContainer{
     margin: 10px;
     color: #fff88bff;
     font-size: 18px;
@@ -7,7 +7,7 @@ div.countdownTimerContainer{
 }
 
 @media only screen and (max-width: 600px) {
-    div.countdownTimerContainer {
+    div.timerContainer {
         font-size: 11px;
     }
 }
