@@ -91,8 +91,8 @@ function WordToGuess() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
+    const [currentResult, setCurrentResult] = useState(null);
     let wordsToChoseFrom;
-    let initialTime;
 
     switch (category) {
         case 'nature':
@@ -106,21 +106,6 @@ function WordToGuess() {
             break;
         default:
             wordsToChoseFrom = { easy: mixedAndEasy, medium: mixedAndMedium, hard: mixedAndDifficult };
-            break;
-    }
-
-    switch (level) {
-        case 'easy':
-            initialTime = 45000;
-            break;
-        case 'medium':
-            initialTime = 90000;
-            break;
-        case 'hard':
-            initialTime = 150000;
-            break;
-        default:
-            initialTime = 45000;
             break;
     }
 
@@ -169,6 +154,7 @@ function WordToGuess() {
             elements[i].innerText = '';
         }
 
+        if (document.getElementById('congratText')) document.getElementById('congratText').classList.remove('visible');
         if (document.getElementById('mark')) document.getElementById('mark').style.opacity = 0;
         if (document.getElementById('mouse')) document.getElementById('mouse').src = 'images/mouse.png';
         let lettersOfAbcFromThePreviousWord = document.getElementsByClassName('letters');
@@ -217,10 +203,9 @@ function WordToGuess() {
         bestTimes = {}; // Default to empty object in case of JSON parsing error
     }
 
-    let countCatLevelTimes;
+    let countCatLevelTimes = 0;
     let bestTimesLayout = Object.keys(bestTimes).map((categoryLevelKey, index) => {
         let catLevel = (category + '-' + level).toLowerCase();
-        countCatLevelTimes = 0;
         if (categoryLevelKey === catLevel) {
             countCatLevelTimes++;
             const bestTimesForCategory = bestTimes[categoryLevelKey];
@@ -260,7 +245,7 @@ function WordToGuess() {
         }
     });
 
-    if(countCatLevelTimes === 0){
+    if (countCatLevelTimes === 0) {
         bestTimesLayout = 'There are no best times yet.';
     }
     return (
@@ -268,7 +253,7 @@ function WordToGuess() {
             <div id="gnameAndWordAndFullscreen">
                 <div>
                     {gamersNickName !== null ? <h1 id="gamerName">Hi, {gamersNickName}!</h1> : null}
-                    {timerChk && <Timer goodGuess={goodGuess} word={word} category={category} level={level} uniqueLettersSize={uniqueLetters.size} restartKey={restartKey} gamersNickName={gamersNickName}></Timer>}
+                    {timerChk && <Timer setCurrentResult={setCurrentResult} goodGuess={goodGuess} word={word} category={category} level={level} uniqueLettersSize={uniqueLetters.size} restartKey={restartKey} gamersNickName={gamersNickName}></Timer>}
                     {timerChk && <TbClockCheck className="bestTimesClockIcon" onClick={openModal} />}
                 </div>
                 <ul>
@@ -281,7 +266,7 @@ function WordToGuess() {
                 </ul>
                 <FullscreenButton />
             </div>
-            {1 === 0 && <CongratText goodGuess={goodGuess} uniqueLettersSize={uniqueLetters.size} word={word}></CongratText>}
+            <CongratText currentResult={currentResult} goodGuess={goodGuess} uniqueLettersSize={uniqueLetters.size} word={word}></CongratText>
             <div id="drawingDiv">
                 <img className="mouse" id="mouse" alt="mouse" src={goodGuess > 0 && ((word.length !== uniqueLetters.size) ? goodGuess === uniqueLetters.size : goodGuess === word.length) ? 'images/yescheese.png' : 'images/mouse.png'} title="mouse"></img>
                 <div id="ladderAndCheese">

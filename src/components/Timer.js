@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import '../css/Timer.css';
 
 const Timer = (props) => {
-    const { word, goodGuess, uniqueLettersSize, category, level, restartKey, gamersNickName } = props;
+    const { word, goodGuess, uniqueLettersSize, category, level, restartKey, gamersNickName, setCurrentResult } = props;
     const [timeElapsed, setTimeElapsed] = useState(0);
     const isSaved = useRef(false);
     const timerInterval = useRef(null);
@@ -18,6 +18,7 @@ const Timer = (props) => {
         if (timerInterval.current) {
             clearInterval(timerInterval.current);
         }
+
         if (!timerStopped.current) {
             timerInterval.current = setInterval(() => {
                 setTimeElapsed((prevTime) => {
@@ -32,51 +33,42 @@ const Timer = (props) => {
                             // Saving the result
                             isSaved.current = true; // Set the flag to true to prevent multiple saves
 
-                            const storedData = localStorage.getItem('bestTimes');
-                            const bestTimes = storedData ? JSON.parse(storedData) : {};
-
-                            // Assuming category and level are passed in as props or state variables
                             const newBestTime = {
                                 name: gamersNickName || 'Anonymous',
-                                time: updatedTime / 1000, // Convert time from milliseconds to seconds
+                                time: prevTime / 1000, // Convert time from milliseconds to seconds
                                 category: category,
                                 level: level
                             };
 
-                            // Create a category-level key (e.g., "easy-1" for category 'easy' and level 1)
                             const categoryLevelKey = `${category}-${level}`;
 
-                            // Check if the category-level already exists in bestTimes
+                            const storedData = localStorage.getItem('bestTimes');
+                            const bestTimes = storedData ? JSON.parse(storedData) : {};
+
                             if (!bestTimes[categoryLevelKey]) {
                                 bestTimes[categoryLevelKey] = [];
                             }
 
-                            // Add the new best time to the corresponding category-level array
                             bestTimes[categoryLevelKey].push(newBestTime);
-
-                            // Sort the times for that category-level by time
                             bestTimes[categoryLevelKey].sort((a, b) => a.time - b.time);
 
-                            // Keep only the top 10 results for that category-level
                             if (bestTimes[categoryLevelKey].length > 10) {
                                 bestTimes[categoryLevelKey].length = 10;
                             }
 
-                            // Get the rank of the current player within their category-level
                             const rank = bestTimes[categoryLevelKey].findIndex(time => time === newBestTime) + 1;
 
-                            // Create a result to be stored in localStorage (this can be used later to show the current rank)
                             const currentResult = [rank, newBestTime.name, newBestTime.time, newBestTime.category, newBestTime.level];
 
-                            // Store the current result and the updated bestTimes back to localStorage
+                            // Update the parent component with the current result
+                            if (setCurrentResult) {
+                                setCurrentResult(currentResult); // Pass the result to the parent component
+                            }
+
                             localStorage.setItem('currentResult', JSON.stringify(currentResult));
                             localStorage.setItem('bestTimes', JSON.stringify(bestTimes));
-
-                            // For debugging purposes, log the result
-                            // console.log(newBestTime);
-                            // console.log(bestTimes);
-
                         }
+                        return prevTime;
                     }
 
                     return updatedTime;
@@ -84,9 +76,8 @@ const Timer = (props) => {
             }, 1000);
         }
 
-        // Cleanup: clear the interval if component is unmounted or timer stopped
         return () => clearInterval(timerInterval.current);
-    }, [timeElapsed, word, goodGuess, uniqueLettersSize, gamersNickName]); // Dependencies list
+    }, [timeElapsed, word, goodGuess, uniqueLettersSize, gamersNickName]);
 
     const formatTime = (time) => {
         const minutes = Math.floor(time / 60000);

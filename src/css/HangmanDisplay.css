@@ -6,6 +6,7 @@
 .mouse {
     height: 70px;
     align-self: flex-end;
+    position: relative;
 }
 
 #ladderAndCheese{

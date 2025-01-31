@@ -40,12 +40,39 @@ function LettersToTry(props) {
     ));
 
     const unTriedLetter = () => {
+        if (document.getElementById('congratText')) {
+            setTimeout(() => {
+                document.getElementById('congratText').classList.add('visible');
+            }, 1000);  // 1000 ms = 1 másodperc
+        }
         document.getElementById('mark').style.opacity = 1;
         Array.from(document.getElementsByClassName('letters')).forEach((letter) => {
             letter.classList.add('untriedLetter');
         });
         document.getElementById('mouse').src = 'images/yescheese.png';
+        // move();
     };
+
+    // function move() {
+    //     let id = null;
+    //     const elem = document.getElementById("mouse");
+    //     let pos = 0;
+    //     let pos2 = 0;
+    //     clearInterval(id);
+    //     id = setInterval(frame, 5); // Az intervallum beállítása, ami 5ms-onként fut
+    
+    //     function frame() {
+    //         if (pos === 400 || pos2 === 90) { // Ha elérjük a kívánt pozíciókat, megállítjuk az animációt
+    //             clearInterval(id);
+    //         } else {
+    //             pos++; // A vízszintes mozgás mértéke
+    //             pos2++; // A függőleges mozgás mértéke
+    //             elem.style.bottom = pos + "px"; // A "bottom" pozíció módosítása
+    //             elem.style.left = pos2 + "px"; // A "left" pozíció módosítása
+    //         }
+    //     }
+    // }
+    
 
     function isThisLetterInTheWord(letterOfAbc) {
         let letterFound = false;
@@ -85,7 +112,7 @@ function LettersToTry(props) {
             }
         });
 
-        if(letterFound && onGoodLetter){
+        if (letterFound && onGoodLetter) {
             onGoodLetter();
         } else {
             if (goodGuess >= word.length) {
