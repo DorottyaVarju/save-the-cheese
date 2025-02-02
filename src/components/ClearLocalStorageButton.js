@@ -8,7 +8,7 @@ const ClearLocalStorageButton = () => {
   };
   return (
     <>
-      <RiDeleteBin2Fill className="delLocalStorageIcon" title="Clear all data from local storage!" onClick={handleClearStorage}/>
+      <RiDeleteBin2Fill className="delLocalStorageIcon" title="Clear all data from browser (local storage)!" onClick={handleClearStorage}/>
     </>
   );
 };

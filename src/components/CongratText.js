@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import '../css/CongratText.css';
 
-const CongratText = ({ currentResult }) => {
+const CongratText = ({ currentResult, goodGuess, word, uniqueLettersSize }) => {
     return (
         <div id="congratText">
-            {currentResult && (
+            {(currentResult && ((word.length !== uniqueLettersSize) ? goodGuess === uniqueLettersSize : goodGuess === word.length)) &&(
                 <>
                     <h5>Time: {currentResult[2]}s{currentResult && currentResult[0] !== 0 && `, Rank: ${currentResult[0]}`}</h5>
                     {currentResult && currentResult[0] !== 0 && (

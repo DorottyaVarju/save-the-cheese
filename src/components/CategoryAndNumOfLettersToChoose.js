@@ -74,7 +74,7 @@ function CategoryAndNumOfLettersToChoose() {
         localStorage.setItem('formData', JSON.stringify(data));
         if (inputs.category !== undefined && inputs.level !== undefined) {
             if (consent !== true) {
-                document.getElementById('errorMsg').innerText = 'Please confirm: By providing a nickname, I consent to having it stored in local storage.';
+                document.getElementById('errorMsg').innerText = 'Please confirm: By providing a nickname, I consent to having it stored in browser(local storage).';
             } else {
                 navigate(`/game`);
             }
@@ -319,7 +319,7 @@ function CategoryAndNumOfLettersToChoose() {
                     </div>
                     <div className="chkbox">
                         <input type="checkbox" className={btnBckgroundClass} id="consent" name="consent" onChange={handleCheckboxChangeConsent} />&nbsp;
-                        <label htmlFor="consent">By providing a nickname, I consent to having it stored in local storage.&nbsp;<span style={{ color: 'red' }}>*</span></label>
+                        <label htmlFor="consent">By providing a nickname, I consent to having it stored in browser (local storage).&nbsp;<span style={{ color: 'red' }}>*</span></label>
                     </div>
                 </div>
                 <br /><br />

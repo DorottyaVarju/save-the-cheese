@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import '../css/Timer.css';
 
 const Timer = (props) => {
-    const { word, goodGuess, uniqueLettersSize, category, level, restartKey, gamersNickName, setCurrentResult } = props;
+    const { wrongGuess, wrongGuessLimit, word, goodGuess, uniqueLettersSize, category, level, restartKey, gamersNickName, setCurrentResult } = props;
     const [timeElapsed, setTimeElapsed] = useState(0);
     const isSaved = useRef(false);
     const timerInterval = useRef(null);
@@ -25,11 +25,10 @@ const Timer = (props) => {
                     const updatedTime = prevTime + 1000;
 
                     // If certain conditions are met, stop the timer and save the result
-                    if (((word.length !== uniqueLettersSize) ? goodGuess === uniqueLettersSize : goodGuess === word.length)) {
+                    if (((word.length !== uniqueLettersSize) ? goodGuess === uniqueLettersSize : goodGuess === word.length) || wrongGuess+1 >= wrongGuessLimit) {
                         clearInterval(timerInterval.current); // Stop the timer
                         timerStopped.current = true; // Set the timer stop flag
-                        if (document.getElementById('mark')) document.getElementById('mark').src = 'images/checkmark.png';
-                        if (!isSaved.current) {
+                        if (!isSaved.current && wrongGuess+1 < wrongGuessLimit) {
                             // Saving the result
                             isSaved.current = true; // Set the flag to true to prevent multiple saves
 

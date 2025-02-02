@@ -4,7 +4,7 @@ import '../css/LettersToTry.css';
 function LettersToTry(props) {
     const abc = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
-    const { word, goodGuess, onGoodLetter } = props;
+    const { wrongGuessLimit, word, goodGuess, onGoodLetter, wrongGuess, onWrongLetter, uniqueLettersSize } = props;
     const letterAboveLine = document.getElementsByClassName('letterAboveLine');
     const handleKeyUp = (event) => {
         const letter = event.key.toUpperCase();
@@ -14,13 +14,16 @@ function LettersToTry(props) {
     };
 
     useEffect(() => {
-
-        document.addEventListener('keyup', handleKeyUp);
-
-        return () => {
+        if(wrongGuess >= wrongGuessLimit || goodGuess >= word.length){
             document.removeEventListener('keyup', handleKeyUp);
-        };
-    }, [word, goodGuess, onGoodLetter]);
+        } else {
+            document.addEventListener('keyup', handleKeyUp);
+
+            return () => {
+                document.removeEventListener('keyup', handleKeyUp);
+            };
+        }
+    }, [word, goodGuess, onGoodLetter, wrongGuess, onWrongLetter]);
 
     const handleClick = (item) => () => {
         isThisLetterInTheWord(item);
@@ -49,30 +52,7 @@ function LettersToTry(props) {
         Array.from(document.getElementsByClassName('letters')).forEach((letter) => {
             letter.classList.add('untriedLetter');
         });
-        document.getElementById('mouse').src = 'images/yescheese.png';
-        // move();
-    };
-
-    // function move() {
-    //     let id = null;
-    //     const elem = document.getElementById("mouse");
-    //     let pos = 0;
-    //     let pos2 = 0;
-    //     clearInterval(id);
-    //     id = setInterval(frame, 5); // Az intervallum beállítása, ami 5ms-onként fut
-    
-    //     function frame() {
-    //         if (pos === 400 || pos2 === 90) { // Ha elérjük a kívánt pozíciókat, megállítjuk az animációt
-    //             clearInterval(id);
-    //         } else {
-    //             pos++; // A vízszintes mozgás mértéke
-    //             pos2++; // A függőleges mozgás mértéke
-    //             elem.style.bottom = pos + "px"; // A "bottom" pozíció módosítása
-    //             elem.style.left = pos2 + "px"; // A "left" pozíció módosítása
-    //         }
-    //     }
-    // }
-    
+    };   
 
     function isThisLetterInTheWord(letterOfAbc) {
         let letterFound = false;
@@ -126,7 +106,19 @@ function LettersToTry(props) {
                     });
                 });
             } else {
+                onWrongLetter();
                 letterOfAbcElement.classList.add('wrongLetterGuess');
+                if(wrongGuess+1 >= wrongGuessLimit){
+                    unTriedLetter();
+                    document.removeEventListener('keyup', handleKeyUp);
+                    Array.from(word).forEach((letterOfWord, indexOfWord) => {
+                        Array.from(letterAboveLine).forEach((line, indexOfLine) => {
+                            if (indexOfLine === indexOfWord) {
+                                line.innerText = letterOfWord;
+                            }
+                        });
+                    });
+                }
             }
         }
     }

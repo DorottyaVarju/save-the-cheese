@@ -9,5 +9,6 @@ div.timerContainer{
 @media only screen and (max-width: 600px) {
     div.timerContainer {
         font-size: 11px;
+        margin: 2px;
     }
 }

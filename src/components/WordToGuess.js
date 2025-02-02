@@ -8,7 +8,6 @@ import ColorChange from './ColorChange.js';
 import Timer from './Timer.js';
 import { TbClockCheck } from "react-icons/tb";
 import Modal from "./Modal.js";
-
 import { natureAndEasy, natureAndMedium, natureAndDifficult, entertainmentAndEasy, entertainmentAndMedium, entertainmentAndDifficult, societyAndEasy, societyAndMedium, societyAndDifficult, mixedAndEasy, mixedAndMedium, mixedAndDifficult, } from '../Words.js';
 import CongratText from "./CongratText.js";
 
@@ -92,7 +91,28 @@ function WordToGuess() {
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
     const [currentResult, setCurrentResult] = useState(null);
+    const [wrongGuess, setWrongGuess] = useState(0);
+    const [markSrc, setMarkSrc] = useState('images/xmark.png');
+    const [mouseSrc, setMouseSrc] = useState('images/mouse.png');
     let wordsToChoseFrom;
+    let wrongGuessLimit;
+
+    switch (level) {
+        case 'easy':
+            wrongGuessLimit = 8;
+            break;
+        case 'medium':
+            wrongGuessLimit = 10;
+            break;
+        case 'hard':
+            wrongGuessLimit = 12;
+            break;
+        default:
+            wrongGuessLimit = 8;
+            break;
+    }
+
+    const [allowedMistakes, setAllowedMistakes] = useState(wrongGuessLimit);
 
     switch (category) {
         case 'nature':
@@ -115,7 +135,11 @@ function WordToGuess() {
         localStorage.removeItem('currentResult');
         let indexOfRandomWord = Math.floor(Math.random() * setOfWords.length);
         setGoodGuess(0);
+        setWrongGuess(0);
+        setAllowedMistakes(wrongGuessLimit);
         setRestartKey((prevKey) => prevKey + 1);
+        setMarkSrc('images/xmark.png');
+        setMouseSrc('images/mouse.png');
 
         setOfWords.forEach(searchForTheValueFromSetOfWordsWithTheIndexOfRandomWord);
 
@@ -172,9 +196,58 @@ function WordToGuess() {
     }, []);
 
     const handleGoodLetter = () => {
+        // console.log(goodGuess);
         if (word.length > goodGuess) {
             setGoodGuess(goodGuess + 1);
+            setMarkSrc('images/checkmark.png');
+            setMouseSrc('images/yescheese.png');
+            if (((word.length !== uniqueLetters.size) ? goodGuess+1 === uniqueLetters.size : goodGuess+1 === word.length)) {
+                // function moveMouseToCheese() {
+                //     const mouse = document.getElementById("mouse");
+                //     const cheese = document.getElementById("cheese");
+        
+                //     const cheeseRect = cheese.getBoundingClientRect();
+                //     const mouseRect = mouse.getBoundingClientRect();
+        
+                //     // A sajt középpontja
+                //     const targetX = cheeseRect.left + (cheeseRect.width / 2) - (mouseRect.width / 2);
+                //     const targetY = cheeseRect.top - mouseRect.height; // A sajt teteje
+        
+                //     let posX = mouseRect.left;
+                //     let posY = mouseRect.top;
+        
+                //     const stepX = (targetX - posX) / 100; // Az X irányú lépés mértéke
+                //     const stepY = (targetY - posY) / 100; // A Y irányú lépés mértéke
+        
+                //     let id = setInterval(() => {
+                //         posX += stepX;
+                //         posY += stepY;
+        
+                //         mouse.style.left = posX + "px"; // Beállítjuk az X pozíciót
+                //         mouse.style.top = posY + "px"; // Beállítjuk az Y pozíciót
+        
+                //         // Ellenőrizzük, hogy elérte-e a cél pozíciót
+                //         if (Math.abs(posX - targetX) < Math.abs(stepX) && Math.abs(posY - targetY) < Math.abs(stepY)) {
+                //             clearInterval(id); // Megállítjuk az animációt
+                //             mouse.style.left = targetX + "px"; // Beállítjuk az X pozíciót
+                //             mouse.style.top = targetY + "px"; // Beállítjuk az Y pozíciót
+                //         }
+                //     }, 5); // Az intervallum beállítása
+                // }
+        
+                // moveMouseToCheese(); // Az animáció elindítása
+        
+            }
         }
+    };
+
+    const handleWrongLetter = () => {
+        setWrongGuess(wrongGuess + 1);
+        setAllowedMistakes(wrongGuessLimit - wrongGuess - 1);
+        setMarkSrc('images/xmark.png');
+        setMouseSrc('images/mouse.png');
+        // console.log(wrongGuess);
+        // console.log(wrongGuessLimit);
     };
 
     const uniqueLetters = new Set();
@@ -251,16 +324,17 @@ function WordToGuess() {
     return (
         <>
             <div id="gnameAndWordAndFullscreen">
-                <div>
+                <div id="gnameAndTimerAndAllowedMistakes">
                     {gamersNickName !== null ? <h1 id="gamerName">Hi, {gamersNickName}!</h1> : null}
-                    {timerChk && <Timer setCurrentResult={setCurrentResult} goodGuess={goodGuess} word={word} category={category} level={level} uniqueLettersSize={uniqueLetters.size} restartKey={restartKey} gamersNickName={gamersNickName}></Timer>}
+                    {timerChk && <Timer wrongGuess={wrongGuess} wrongGuessLimit={wrongGuessLimit} setCurrentResult={setCurrentResult} goodGuess={goodGuess} word={word} category={category} level={level} uniqueLettersSize={uniqueLetters.size} restartKey={restartKey} gamersNickName={gamersNickName}></Timer>}
+                    <p>Allowed mistakes: {allowedMistakes}</p>
                     {timerChk && <TbClockCheck className="bestTimesClockIcon" onClick={openModal} />}
                 </div>
                 <ul>
                     {linesForWordToGuess}
                     <li className="letterAndLineContainer">
                         <span className="imgAboveLine">
-                            <img src={goodGuess > 0 && ((word.length !== uniqueLetters.size) ? goodGuess === uniqueLetters.size : goodGuess === word.length) ? 'images/checkmark.png' : 'images/xmark.png'} alt="mark" id="mark"></img>
+                            <img src={markSrc} alt="mark" id="mark"></img>
                         </span>
                     </li>
                 </ul>
@@ -268,17 +342,17 @@ function WordToGuess() {
             </div>
             <CongratText currentResult={currentResult} goodGuess={goodGuess} uniqueLettersSize={uniqueLetters.size} word={word}></CongratText>
             <div id="drawingDiv">
-                <img className="mouse" id="mouse" alt="mouse" src={goodGuess > 0 && ((word.length !== uniqueLetters.size) ? goodGuess === uniqueLetters.size : goodGuess === word.length) ? 'images/yescheese.png' : 'images/mouse.png'} title="mouse"></img>
+                <img className="mouse" id="mouse" alt="mouse" src={mouseSrc} title="mouse"></img>
                 <div id="ladderAndCheese">
                     {wordSelected && <HangmanDisplay goodGuess={goodGuess} word={word}></HangmanDisplay>}
-                    <img className="cheese" src='images/cheese.png' alt="cheese" title="cheese"></img>
+                    <img className="cheese" src='images/cheese.png' alt="cheese" title="cheese" id="cheese"></img>
                 </div>
             </div>
             <div id="buttonDiv">
                 <button type="button" onClick={returnAWordToGuess} id="btnIWantAWord">I want another word!</button>
                 <button type="button" id="backBtn" onClick={backToMainPage}>Back to the main page!</button>
             </div>
-            <LettersToTry word={word} goodGuess={goodGuess} onGoodLetter={handleGoodLetter}></LettersToTry>
+            <LettersToTry wrongGuessLimit={wrongGuessLimit} word={word} goodGuess={goodGuess} onGoodLetter={handleGoodLetter} wrongGuess={wrongGuess} onWrongLetter={handleWrongLetter}></LettersToTry>
             <div id="selectedCatAndLevelAndColor">
                 <ColorChange />
                 <h1>Selected category: {category !== undefined ? category.toUpperCase() : ''} &nbsp;&nbsp; Selected level: {level !== undefined ? level.toUpperCase() : ''}</h1>
