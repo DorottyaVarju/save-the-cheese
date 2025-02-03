@@ -3,7 +3,7 @@
     justify-content: center;
 }
 
-.mouse {
+.mouse, #mouseImgContainer {
     height: 70px;
     align-self: flex-end;
     position: relative;

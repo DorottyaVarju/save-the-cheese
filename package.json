@@ -16,7 +16,7 @@
     "react-select": "^5.9.0",
     "web-vitals": "^2.1.4"
   },
-"scripts": {
+  "scripts": {
     "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
     "clean": "rm -f ./build/asset-manifest.json",
     "build": "npm run clean && DISABLE_ESLINT_PLUGIN=true react-scripts build",

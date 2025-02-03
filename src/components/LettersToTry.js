@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import '../css/LettersToTry.css';
 
 function LettersToTry(props) {
@@ -6,9 +6,12 @@ function LettersToTry(props) {
 
     const { wrongGuessLimit, word, goodGuess, onGoodLetter, wrongGuess, onWrongLetter, uniqueLettersSize } = props;
     const letterAboveLine = document.getElementsByClassName('letterAboveLine');
+    const [usedKeys, setUsedKeys] = useState([]);
+
     const handleKeyUp = (event) => {
         const letter = event.key.toUpperCase();
-        if (abc.includes(letter)) {
+        if (abc.includes(letter) && !usedKeys.includes(letter)) {
+            setUsedKeys(prevKeys => [...prevKeys, letter]);
             isThisLetterInTheWord(letter);
         }
     };
@@ -23,7 +26,7 @@ function LettersToTry(props) {
                 document.removeEventListener('keyup', handleKeyUp);
             };
         }
-    }, [word, goodGuess, onGoodLetter, wrongGuess, onWrongLetter]);
+    }, [word, goodGuess, onGoodLetter, wrongGuess, onWrongLetter, usedKeys]);
 
     const handleClick = (item) => () => {
         isThisLetterInTheWord(item);
@@ -52,6 +55,7 @@ function LettersToTry(props) {
         Array.from(document.getElementsByClassName('letters')).forEach((letter) => {
             letter.classList.add('untriedLetter');
         });
+        setUsedKeys([]);
     };   
 
     function isThisLetterInTheWord(letterOfAbc) {

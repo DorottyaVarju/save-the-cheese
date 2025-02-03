@@ -34,7 +34,7 @@ function CategoryAndNumOfLettersToChoose() {
             bgColor = '#480ca8';
             break;
         default:
-            bgColor = '#844923ff';
+            bgColor = '#4f2c16';
     }
 
     const gamersNickName = localStorage.getItem('gamersNickName');
@@ -120,7 +120,7 @@ function CategoryAndNumOfLettersToChoose() {
                         bgColor = '#480ca8';
                         break;
                     default:
-                        bgColor = '#844923ff';
+                        bgColor = '#4f2c16';
                 }
                 allOptions.forEach((option, index) => {
                     if (index !== 0) {
@@ -128,11 +128,11 @@ function CategoryAndNumOfLettersToChoose() {
                         option.style.color = '#fff88bff';
                     } else {
                         option.style.backgroundColor = '#fff88bff';
-                        option.style.color = '#844923ff';
+                        option.style.color = '#4f2c16';
                     }
                     option.onmouseover = () => {
                         option.style.backgroundColor = '#fff88bff';
-                        option.style.color = '#844923ff';
+                        option.style.color = '#4f2c16';
                         if (index !== 0) {
                             allOptions[0].style.backgroundColor = bgColor;
                             allOptions[0].style.color = '#fff88bff';
@@ -225,7 +225,7 @@ function CategoryAndNumOfLettersToChoose() {
                             option: (provided, state) => ({
                                 ...provided,
                                 backgroundColor: state.isFocused ? '#fff88bff' : bgColor,
-                                color: state.isFocused ? '#844923ff' : '#fff88bff',
+                                color: state.isFocused ? '#4f2c16' : '#fff88bff',
                                 cursor: 'pointer',
                             }),
                             indicatorSeparator: (provided) => ({
@@ -301,7 +301,7 @@ function CategoryAndNumOfLettersToChoose() {
                             option: (provided, state) => ({
                                 ...provided,
                                 backgroundColor: state.isFocused ? '#fff88bff' : bgColor,
-                                color: state.isFocused ? '#844923ff' : '#fff88bff',
+                                color: state.isFocused ? '#4f2c16' : '#fff88bff',
                                 cursor: 'pointer',
                             }),
                             indicatorSeparator: (provided) => ({

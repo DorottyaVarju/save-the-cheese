@@ -10,6 +10,7 @@ import { TbClockCheck } from "react-icons/tb";
 import Modal from "./Modal.js";
 import { natureAndEasy, natureAndMedium, natureAndDifficult, entertainmentAndEasy, entertainmentAndMedium, entertainmentAndDifficult, societyAndEasy, societyAndMedium, societyAndDifficult, mixedAndEasy, mixedAndMedium, mixedAndDifficult, } from '../Words.js';
 import CongratText from "./CongratText.js";
+import Accessory from './Accessory.js';
 
 function WordToGuess() {
     let btnBckgroundClass = localStorage.getItem('btnBckgroundClass');
@@ -327,7 +328,7 @@ function WordToGuess() {
                 <div id="gnameAndTimerAndAllowedMistakes">
                     {gamersNickName !== null ? <h1 id="gamerName">Hi, {gamersNickName}!</h1> : null}
                     {timerChk && <Timer wrongGuess={wrongGuess} wrongGuessLimit={wrongGuessLimit} setCurrentResult={setCurrentResult} goodGuess={goodGuess} word={word} category={category} level={level} uniqueLettersSize={uniqueLetters.size} restartKey={restartKey} gamersNickName={gamersNickName}></Timer>}
-                    <p>Allowed mistakes: {allowedMistakes}</p>
+                    <p>Allowed mistakes: <span style={allowedMistakes < 4 ? { color: 'red' } : {}}>{allowedMistakes}</span></p>
                     {timerChk && <TbClockCheck className="bestTimesClockIcon" onClick={openModal} />}
                 </div>
                 <ul>
@@ -340,9 +341,12 @@ function WordToGuess() {
                 </ul>
                 <FullscreenButton />
             </div>
-            <CongratText currentResult={currentResult} goodGuess={goodGuess} uniqueLettersSize={uniqueLetters.size} word={word}></CongratText>
+            <CongratText currentResult={currentResult} goodGuess={goodGuess} uniqueLettersSize={uniqueLetters.size} word={word} wrongGuess={wrongGuess} wrongGuessLimit={wrongGuessLimit}></CongratText>
             <div id="drawingDiv">
-                <img className="mouse" id="mouse" alt="mouse" src={mouseSrc} title="mouse"></img>
+                <div id="mouseImgContainer">
+                    <img className="mouse" id="mouse" alt="mouse" src={mouseSrc} title="mouse"></img>
+                    <Accessory></Accessory>
+                </div>
                 <div id="ladderAndCheese">
                     {wordSelected && <HangmanDisplay goodGuess={goodGuess} word={word}></HangmanDisplay>}
                     <img className="cheese" src='images/cheese.png' alt="cheese" title="cheese" id="cheese"></img>

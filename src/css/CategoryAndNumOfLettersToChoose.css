@@ -18,7 +18,7 @@ button {
     padding: 10px 30px;
     border-radius: 20px;
     border: none;
-    background-color: #844923ff;
+    background-color: #4f2c16;
     cursor: pointer;
     background: transparent;
     color: #fff88bff;
@@ -28,7 +28,7 @@ button {
 
 button:hover {
     background-color: #fff88bff;
-    color: #844923ff;
+    color: #4f2c16;
 }
 
 #submitBtn {
@@ -43,7 +43,7 @@ input {
     padding: 10px 30px;
     border-radius: 20px;
     border: none;
-    background-color: #844923ff;
+    background-color: #4f2c16;
     cursor: pointer;
     color: #fff88bff;
     font-size: 18px;
