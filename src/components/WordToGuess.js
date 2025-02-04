@@ -55,6 +55,7 @@ function WordToGuess() {
     let category = 'mixed';
     let level = 'easy';
     let timerChk = false;
+    let selectedCharacter = 'mouse.png';
     const gamersNickName = localStorage.getItem('gamersNickName');
     if (gamersNickName !== null) {
         if (gamersNickName.startsWith('"') && gamersNickName.endsWith('"')) {
@@ -66,6 +67,7 @@ function WordToGuess() {
         category = JSON.stringify(data.category, null, 2);
         level = JSON.stringify(data.level, null, 2);
         timerChk = JSON.stringify(data.timer, null, 2);
+        selectedCharacter = data.selectedCharacter;
         if (category !== undefined) {
             if (category.startsWith('"') && category.endsWith('"')) {
                 category = category.slice(1, -1);
@@ -94,9 +96,28 @@ function WordToGuess() {
     const [currentResult, setCurrentResult] = useState(null);
     const [wrongGuess, setWrongGuess] = useState(0);
     const [markSrc, setMarkSrc] = useState('images/xmark.png');
-    const [mouseSrc, setMouseSrc] = useState('images/mouse.png');
+    const [mouseSrc, setMouseSrc] = useState('images/'+selectedCharacter);
     let wordsToChoseFrom;
     let wrongGuessLimit;
+    let foodSrc;
+
+    switch (selectedCharacter) {
+        case 'mouse.png':
+            foodSrc = 'images/cheese.png';
+            break;
+        case 'panda.png':
+            foodSrc = 'images/bamboo.png';
+            break;
+        case 'bunny.png':
+            foodSrc = 'images/carrot.png';
+            break;
+        case 'bear.png':
+            foodSrc = 'images/honey.png';
+            break;
+        default:
+            foodSrc = 'images/cheese.png';
+            break;
+    }
 
     switch (level) {
         case 'easy':
@@ -140,8 +161,7 @@ function WordToGuess() {
         setAllowedMistakes(wrongGuessLimit);
         setRestartKey((prevKey) => prevKey + 1);
         setMarkSrc('images/xmark.png');
-        setMouseSrc('images/mouse.png');
-
+        setMouseSrc('images/'+selectedCharacter);
         setOfWords.forEach(searchForTheValueFromSetOfWordsWithTheIndexOfRandomWord);
 
         function searchForTheValueFromSetOfWordsWithTheIndexOfRandomWord(item, index) {
@@ -181,7 +201,7 @@ function WordToGuess() {
 
         if (document.getElementById('congratText')) document.getElementById('congratText').classList.remove('visible');
         if (document.getElementById('mark')) document.getElementById('mark').style.opacity = 0;
-        if (document.getElementById('mouse')) document.getElementById('mouse').src = 'images/mouse.png';
+        if (document.getElementById('mouse')) document.getElementById('mouse').src = 'images/'+selectedCharacter;
         let lettersOfAbcFromThePreviousWord = document.getElementsByClassName('letters');
         (Array.from(lettersOfAbcFromThePreviousWord)).forEach((letterFromPreviousWord, indexOfLetterFromPreviousWord) => {
             letterFromPreviousWord.classList.remove('alreadyInWordLetter');
@@ -201,7 +221,7 @@ function WordToGuess() {
         if (word.length > goodGuess) {
             setGoodGuess(goodGuess + 1);
             setMarkSrc('images/checkmark.png');
-            setMouseSrc('images/yescheese.png');
+            setMouseSrc('images/'+selectedCharacter);
             if (((word.length !== uniqueLetters.size) ? goodGuess+1 === uniqueLetters.size : goodGuess+1 === word.length)) {
                 // function moveMouseToCheese() {
                 //     const mouse = document.getElementById("mouse");
@@ -246,7 +266,7 @@ function WordToGuess() {
         setWrongGuess(wrongGuess + 1);
         setAllowedMistakes(wrongGuessLimit - wrongGuess - 1);
         setMarkSrc('images/xmark.png');
-        setMouseSrc('images/mouse.png');
+        setMouseSrc('images/'+selectedCharacter);
         // console.log(wrongGuess);
         // console.log(wrongGuessLimit);
     };
@@ -349,7 +369,7 @@ function WordToGuess() {
                 </div>
                 <div id="ladderAndCheese">
                     {wordSelected && <HangmanDisplay goodGuess={goodGuess} word={word}></HangmanDisplay>}
-                    <img className="cheese" src='images/cheese.png' alt="cheese" title="cheese" id="cheese"></img>
+                    <img className="cheese" src={foodSrc} alt="cheese" title="cheese" id="cheese"></img>
                 </div>
             </div>
             <div id="buttonDiv">

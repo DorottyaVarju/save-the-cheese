@@ -6,8 +6,10 @@ import ColorChange from './ColorChange.js';
 import FullscreenButton from './FullscreenButton';
 import { FaPlay } from "react-icons/fa";
 import ClearLocalStorageButton from './ClearLocalStorageButton';
+import CharacterSelector from './CharacterSelector';
 
 function CategoryAndNumOfLettersToChoose() {
+    const characters = ['mouse.png', 'panda.png', 'bunny.png', 'bear.png'];
     const selectRef = useRef(null);
     let btnBckgroundClass = localStorage.getItem('btnBckgroundClass');
     let bodyBckgroundClass = localStorage.getItem('bodyBckgroundClass');
@@ -156,6 +158,10 @@ function CategoryAndNumOfLettersToChoose() {
             </div>
             <h1>Feed the mouse - by guessing a word!</h1>
             <form onSubmit={handleSubmit}>
+                <label>Choose a character:</label>
+                <br /><br />
+                <CharacterSelector characters={characters} />
+                <br />
                 <label>Enter a nickname:</label>
                 <br />
                 <input className={btnBckgroundClass} type="text" name="name" id="name" maxLength={10} autoFocus autoComplete="off" value={gamersName}

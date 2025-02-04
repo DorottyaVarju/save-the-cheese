@@ -1,0 +1,23 @@
+.characterSelectorDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.leftBtn {
+    font-size: 35px;
+    background-color: transparent;
+}
+
+.rightBtn {
+    font-size: 35px;
+    background-color: transparent;
+}
+
+.leftBtn:hover, .rightBtn:hover{
+    background-color: transparent;
+}
+
+.character{
+    height: 70px;
+}
