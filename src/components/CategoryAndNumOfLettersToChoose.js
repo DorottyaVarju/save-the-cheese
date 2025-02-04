@@ -158,7 +158,7 @@ function CategoryAndNumOfLettersToChoose() {
             </div>
             <h1>Feed the mouse - by guessing a word!</h1>
             <form onSubmit={handleSubmit}>
-                <label>Choose a character:</label>
+                <label>Pick a character:</label>
                 <br /><br />
                 <CharacterSelector characters={characters} />
                 <br />
