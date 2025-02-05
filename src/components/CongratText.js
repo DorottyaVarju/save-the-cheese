@@ -14,7 +14,7 @@ const CongratText = ({ currentResult, goodGuess, word, uniqueLettersSize, wrongG
             )}
             {(wrongGuess === wrongGuessLimit) &&(
                 <>
-                    <h5>You have used up all your chances to make mistakes.</h5>
+                    <h5>You have used up all your {wrongGuessLimit} chances to make mistakes.</h5>
                 </>
             )}
         </div>

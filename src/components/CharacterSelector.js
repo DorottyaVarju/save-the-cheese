@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../css/CharacterSelector.css';
 import { TiMediaPlayReverse } from "react-icons/ti";
 import { TiMediaPlay } from "react-icons/ti";
+import Accessory from './Accessory.js';
 
 const CharacterSelector = ({ characters }) => {
     let btnBckgroundClass = localStorage.getItem('btnBckgroundClass');
@@ -23,10 +24,8 @@ const CharacterSelector = ({ characters }) => {
         default:
             color = '#4f2c16';
     }
-    // Állapot tárolása, hogy melyik karaktert mutassuk
     const [currentCharacterIndex, setCurrentCharacterIndex] = useState(0);
 
-    // Kattintásra balra és jobbra léptethetjük a karaktereket
     const handlePrev = () => {
         setCurrentCharacterIndex((prevIndex) => (prevIndex - 1 + characters.length) % characters.length);
     };
@@ -37,16 +36,16 @@ const CharacterSelector = ({ characters }) => {
 
     return (
         <div className="characterSelectorDiv">
-            {/* Balra léptető gomb */}
-            <TiMediaPlayReverse className="arrows" style={{ color: color }} onClick={handlePrev} /> {/* Ez egy balra mutató nyíl */}
-                {/* Jelenlegi karakter */}
+            <TiMediaPlayReverse className="arrows" style={{ color: color }} onClick={handlePrev} />
+            <div id="mouseImgContainer">
                 <img
                     className="character"
                     src={'images/' + characters[currentCharacterIndex]}
                     alt="character"
                 />
-            {/* Jobbra léptető gomb */}
-            <TiMediaPlay className="arrows" style={{ color: color }} onClick={handleNext} /> {/* Ez egy jobbra mutató nyíl */}
+                <Accessory></Accessory>
+            </div>
+            <TiMediaPlay className="arrows" style={{ color: color }} onClick={handleNext} />
 
             <input
                 type="hidden"
