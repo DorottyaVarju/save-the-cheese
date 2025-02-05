@@ -8,7 +8,9 @@ const ColorChange = () => {
         let selectContainers = document.getElementsByClassName('selectContainer');
         let inputs = document.getElementsByTagName('input');
         let options = document.getElementsByTagName('option');
-    
+        let characterSeletorArrows = document.getElementsByClassName('arrows');
+        let color;
+
         let bodyBckgroundClass, btnBckgroundClass;
 
         switch (id) {
@@ -32,7 +34,7 @@ const ColorChange = () => {
                 bodyBckgroundClass = 'purpleBodyBckground';
                 btnBckgroundClass = 'purpleBtnBckground';
                 break;
-            default: 
+            default:
                 bodyBckgroundClass = 'brownBodyBckground';
                 btnBckgroundClass = 'brownBtnBckground';
                 break;
@@ -41,9 +43,26 @@ const ColorChange = () => {
         document.body.removeAttribute('class');
         document.body.classList.add(bodyBckgroundClass);
 
+        switch (bodyBckgroundClass) {
+            case 'pinkBodyBckground':
+                color = '#8c3747';
+                break;
+            case 'blueBodyBckground':
+                color = '#072ac8';
+                break;
+            case 'greenBodyBckground':
+                color = '#1a5c3d';
+                break;
+            case 'purpleBodyBckground':
+                color = '#480ca8';
+                break;
+            default:
+                color = '#4f2c16';
+        }
+
         for (let i = 0; i < buttons.length; i++) {
             let isChildOfColorChangeDiv = document.getElementById('colorChange').contains(buttons[i]);
-    
+
             if (!isChildOfColorChangeDiv) {
                 buttons[i].classList.remove('brownBtnBckground');
                 buttons[i].classList.remove('pinkBtnBckground');
@@ -53,16 +72,20 @@ const ColorChange = () => {
                 buttons[i].classList.add(btnBckgroundClass);
             }
         }
-    
+
         for (let i = 0; i < selectContainers.length; i++) {
             selectContainers[i].classList.remove('brownBtnBckgroundForSelect');
             selectContainers[i].classList.remove('pinkBtnBckgroundForSelect');
             selectContainers[i].classList.remove('blueBtnBckgroundForSelect');
             selectContainers[i].classList.remove('greenBtnBckgroundForSelect');
             selectContainers[i].classList.remove('purpleBtnBckgroundForSelect');
-            selectContainers[i].classList.add(btnBckgroundClass+'ForSelect');
+            selectContainers[i].classList.add(btnBckgroundClass + 'ForSelect');
         }
-    
+
+        for (let i = 0; i < characterSeletorArrows.length; i++) {
+            characterSeletorArrows[i].style.color = color;
+        }
+
         for (let i = 0; i < inputs.length; i++) {
             inputs[i].classList.remove('brownBtnBckground');
             inputs[i].classList.remove('pinkBtnBckground');
@@ -71,7 +94,7 @@ const ColorChange = () => {
             inputs[i].classList.remove('purpleBtnBckground');
             inputs[i].classList.add(btnBckgroundClass);
         }
-    
+
         for (let i = 0; i < options.length; i++) {
             options[i].classList.remove('brownBtnBckground');
             options[i].classList.remove('pinkBtnBckground');
@@ -84,17 +107,17 @@ const ColorChange = () => {
         localStorage.setItem('btnBckgroundClass', btnBckgroundClass);
         localStorage.setItem('bodyBckgroundClass', bodyBckgroundClass);
     };
-    
 
-  return (
-    <div id="colorChange">
-        <button id="brownBtn" onClick={() => themeChange("brownBtn")}></button>
-        <button id="pinkBtn" onClick={() => themeChange("pinkBtn")}></button>
-        <button id="blueBtn" onClick={() => themeChange("blueBtn")}></button>
-        <button id="greenBtn" onClick={() => themeChange("greenBtn")}></button>
-        <button id="purpleBtn" onClick={() => themeChange("purpleBtn")}></button>
-    </div>
-  );
+
+    return (
+        <div id="colorChange">
+            <button id="brownBtn" onClick={() => themeChange("brownBtn")}></button>
+            <button id="pinkBtn" onClick={() => themeChange("pinkBtn")}></button>
+            <button id="blueBtn" onClick={() => themeChange("blueBtn")}></button>
+            <button id="greenBtn" onClick={() => themeChange("greenBtn")}></button>
+            <button id="purpleBtn" onClick={() => themeChange("purpleBtn")}></button>
+        </div>
+    );
 };
 
 export default ColorChange;
