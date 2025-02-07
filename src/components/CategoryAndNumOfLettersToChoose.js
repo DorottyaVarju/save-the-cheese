@@ -156,7 +156,7 @@ function CategoryAndNumOfLettersToChoose() {
                 <ClearLocalStorageButton />
                 <FullscreenButton />
             </div>
-            <h1>Feed the mouse - by guessing a word!</h1>
+            <h1>Feed the mouse (or another animal) - by guessing a word!</h1>
             <form onSubmit={handleSubmit}>
                 <label>Pick a character:</label>
                 <br /><br />

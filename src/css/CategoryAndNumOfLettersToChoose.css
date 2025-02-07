@@ -112,6 +112,10 @@ div.selectContainer {
 }
 
 @media only screen and (max-width: 600px) {
+    h1, form{
+        font-size: 13px;
+    }
+
     #errorMsg {
         font-size: 12.5px;
     }

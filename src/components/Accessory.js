@@ -6,7 +6,8 @@ const Accessory = () => {
     let accessorySrc;
 
 
-    const month = new Date().getMonth(); // 0-alapú hónap (0: január, 1: február, ... 11: december)
+    const month = new Date().getMonth();
+    const day = new Date().getDate();
 
     if (month >= 2 && month <= 4) {
         accessorySrc = 'images/flower.png';
@@ -16,6 +17,24 @@ const Accessory = () => {
         accessorySrc = 'images/raincoat.png';
     } else {
         accessorySrc = 'images/scarf.png';
+    }
+
+    const isChristmas = (month === 11 && day === 25);
+    const isEaster = (month === 3 && day >= 22 && day <= 28);
+    const isNewYear = (month === 0 && day === 1);
+    const isHalloween = (month === 9 && day === 31);
+    const isValentinesDay = (month === 1 && day === 14);
+
+    if (isChristmas) {
+        accessorySrc = 'images/santahat.png';
+    } else if (isEaster) {
+        accessorySrc = 'images/easteregg.png';
+    } else if (isNewYear) {
+        accessorySrc = 'images/balloon.png';
+    } else if (isHalloween) {
+        accessorySrc = 'images/pumpkin.png'; // Halloween tök
+    } else if (isValentinesDay) {
+        accessorySrc = 'images/valentine.png';
     }
 
     return (
