@@ -21,7 +21,7 @@ div.brownBtnBckgroundForSelect>div>div {
 }
 
 .brownBodyBckground {
-    background-color: #533e08d7;
+    background-color: #694f0dd7;
 }
 
 #pinkBtn,
@@ -32,7 +32,7 @@ div.pinkBtnBckgroundForSelect>div>div {
 }
 
 .pinkBodyBckground {
-    background-color: #b5485d;
+    background-color: #bc6273;
 }
 
 #blueBtn,
@@ -43,7 +43,7 @@ div.blueBtnBckgroundForSelect>div>div {
 }
 
 .blueBodyBckground {
-    background-color: #184a87;
+    background-color: #3b6aa2;
 }
 
 #greenBtn,
@@ -54,7 +54,7 @@ div.greenBtnBckgroundForSelect>div>div {
 }
 
 .greenBodyBckground {
-    background-color: #2e785a;
+    background-color: #3a8869;
 }
 
 #purpleBtn,
@@ -65,5 +65,5 @@ div.purpleBtnBckgroundForSelect>div>div {
 }
 
 .purpleBodyBckground {
-    background-color: #53228c;
+    background-color: #a05eed;
 }
