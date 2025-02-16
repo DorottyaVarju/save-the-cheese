@@ -3,16 +3,16 @@
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: 10% 5% auto 2.5% auto 4%;
     grid-gap: 14px;
-    grid-template-areas: 
-      "gwf gwf gwf gwf gwf gwf gwf gwf gwf gwf gwf gwf"
-      "ct ct ct ct ct ct ct ct ct ct ct ct"
-      "dd dd dd dd dd dd dd dd dd dd dd dd"
-      "bd bd bd bd bd bd bd bd bd bd bd bd"
-      "e e e e e e e e e e e e"
-      "sclc sclc sclc sclc sclc sclc sclc sclc sclc sclc sclc sclc";
+    grid-template-areas:
+        "gwf gwf gwf gwf gwf gwf gwf gwf gwf gwf gwf gwf"
+        "ct ct ct ct ct ct ct ct ct ct ct ct"
+        "dd dd dd dd dd dd dd dd dd dd dd dd"
+        "bd bd bd bd bd bd bd bd bd bd bd bd"
+        "e e e e e e e e e e e e"
+        "sclc sclc sclc sclc sclc sclc sclc sclc sclc sclc sclc sclc";
 }
 
-#gnameAndTimerAndAllowedMistakes{
+#gnameAndTimerAndAllowedMistakes {
     min-height: 300px;
     display: flex;
     flex-direction: column;
@@ -20,40 +20,40 @@
     color: #fff88bff;
 }
 
-#gnameAndTimerAndAllowedMistakes > p{
+#gnameAndTimerAndAllowedMistakes>p {
     margin: 10px;
 }
 
-#gnameAndWordAndFullscreen{
+#gnameAndWordAndFullscreen {
     grid-area: gwf;
     display: flex;
     justify-content: space-between;
 }
 
-#congratText{
+#congratText {
     grid-area: ct;
 }
 
-#drawingDiv{
+#drawingDiv {
     grid-area: dd;
 }
 
-#buttonDiv{
+#buttonDiv {
     grid-area: bd;
     min-width: 334px;
 }
 
-#elementsToReturn  {
+#elementsToReturn {
     grid-area: e;
 }
 
-#selectedCatAndLevelAndColor{
+#selectedCatAndLevelAndColor {
     grid-area: sclc;
     display: flex;
     justify-content: center;
 }
 
-#selectedCatAndLevelAndColor > h1{
+#selectedCatAndLevelAndColor>h1 {
     margin: 0;
 }
 
@@ -62,13 +62,14 @@ ul {
     align-items: flex-end;
 }
 
-.letterAndLineContainer{
+.letterAndLineContainer {
     display: inline-flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.letterAboveLine, .imgAboveLine {
+.letterAboveLine,
+.imgAboveLine {
     font-size: 40px;
     color: #fff88bff;
 }
@@ -80,7 +81,7 @@ ul {
     margin-top: -20px;
 }
 
-#mark{
+#mark {
     height: 25px;
     width: 25px;
     opacity: 0;
@@ -92,7 +93,7 @@ button {
     padding: 10px 30px;
     border-radius: 20px;
     border: none;
-    background-color:#844923ff;
+    background-color: #4f2c16;
     cursor: pointer;
     color: #fff88bff;
     font-size: 18px;
@@ -101,7 +102,7 @@ button {
 
 button:hover {
     background-color: #fff88bff;
-    color: #844923ff;
+    color: #4f2c16;
 }
 
 #btnIWantAWord {
@@ -127,24 +128,25 @@ button:hover {
 
 }
 
-div#selectedCatAndLevel > h1 {
+div#selectedCatAndLevel>h1 {
     margin: 0px;
     font-size: 18px;
 }
 
-#gamerName{
+#gamerName {
     margin: 10px;
 }
 
-.bestTimesClockIcon{
+.bestTimesClockIcon {
     color: #fff88bff;
     font-size: 30px;
     margin: 10px;
     display: flex;
     cursor: pointer;
+    z-index: 1;
 }
 
-.bestTimesClockIcon:hover{
+.bestTimesClockIcon:hover {
     filter: sepia(1) saturate(500%) hue-rotate(-20deg) brightness(80%);
 }
 
@@ -160,13 +162,14 @@ div#selectedCatAndLevel > h1 {
         font-size: 16px;
         margin-top: -30px;
         height: 1.9rem;
-    }   
+    }
 
-    div#selectedCatAndLevelAndColor > h1, #gamerName {
+    div#selectedCatAndLevelAndColor>h1,
+    #gamerName {
         font-size: 12px;
     }
 
-    .bestTimesClockIcon{
+    .bestTimesClockIcon {
         font-size: 22px;
         margin: 2px;
     }
@@ -181,21 +184,21 @@ div#selectedCatAndLevel > h1 {
         font-size: 33px;
         margin-top: 10px;
     }
-    
+
     .lineForWordToGuess {
         min-width: 16px;
         font-size: 18px;
         margin-top: -20px;
     }
-    
+
     #btnIWantAWord {
         border-right: 1px solid #fff88bff;
     }
-    
-    #checkmark{
+
+    #checkmark {
         width: 22px;
     }
-    
+
     #backBtn {
         border-left: 1px solid #fff88bff;
     }
@@ -206,9 +209,10 @@ div#selectedCatAndLevel > h1 {
         padding: 6px 26px;
         border-radius: 16px;
         font-size: 11px;
-    }   
+    }
 
-    div#selectedCatAndLevel > h1, #gamerName {
+    div#selectedCatAndLevel>h1,
+    #gamerName {
         font-size: 11px;
         margin: 2px;
     }
@@ -216,13 +220,13 @@ div#selectedCatAndLevel > h1 {
     .letterAboveLine {
         font-size: 25px;
     }
-    
+
     .lineForWordToGuess {
         font-size: 6px;
         margin-top: -10px;
     }
-    
-    #checkmark{
+
+    #checkmark {
         width: 19px;
     }
 
@@ -230,13 +234,13 @@ div#selectedCatAndLevel > h1 {
         font-size: 11px;
     }
 
-    #gnameAndTimerAndAllowedMistakes > p {
+    #gnameAndTimerAndAllowedMistakes>p {
         margin: 2px;
     }
 }
 
-@media only screen and (max-height: 800px) and (orientation: portrait){
-    .letterAndLineContainer{
+@media only screen and (max-height: 800px) and (orientation: portrait) {
+    .letterAndLineContainer {
         max-height: 70px;
     }
 }
@@ -245,7 +249,7 @@ div#selectedCatAndLevel > h1 {
 
     button {
         font-size: 15px;
-    }   
+    }
 
     #buttonDiv {
         margin-bottom: -40px;
@@ -253,7 +257,7 @@ div#selectedCatAndLevel > h1 {
 }
 
 @media only screen and (max-height: 600px) and (orientation: landscape) {
-    div#selectedCatAndLevel > h1 {
+    div#selectedCatAndLevel>h1 {
         margin-bottom: -80px;
     }
 }

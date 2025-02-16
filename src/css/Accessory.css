@@ -1,0 +1,11 @@
+.accessories {
+    height: 70px;
+    align-self: flex-end;
+    position: relative;
+}
+
+.accessories {
+    position: absolute;
+    top: 0;
+    left: 0;
+}

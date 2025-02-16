@@ -6,8 +6,10 @@ import ColorChange from './ColorChange.js';
 import FullscreenButton from './FullscreenButton';
 import { FaPlay } from "react-icons/fa";
 import ClearLocalStorageButton from './ClearLocalStorageButton';
+import CharacterSelector from './CharacterSelector';
 
 function CategoryAndNumOfLettersToChoose() {
+    const characters = ['mouse.png', 'panda.png', 'bunny.png', 'bear.png'];
     const selectRef = useRef(null);
     let btnBckgroundClass = localStorage.getItem('btnBckgroundClass');
     let bodyBckgroundClass = localStorage.getItem('bodyBckgroundClass');
@@ -34,7 +36,7 @@ function CategoryAndNumOfLettersToChoose() {
             bgColor = '#480ca8';
             break;
         default:
-            bgColor = '#844923ff';
+            bgColor = '#4f2c16';
     }
 
     const gamersNickName = localStorage.getItem('gamersNickName');
@@ -120,7 +122,7 @@ function CategoryAndNumOfLettersToChoose() {
                         bgColor = '#480ca8';
                         break;
                     default:
-                        bgColor = '#844923ff';
+                        bgColor = '#4f2c16';
                 }
                 allOptions.forEach((option, index) => {
                     if (index !== 0) {
@@ -128,11 +130,11 @@ function CategoryAndNumOfLettersToChoose() {
                         option.style.color = '#fff88bff';
                     } else {
                         option.style.backgroundColor = '#fff88bff';
-                        option.style.color = '#844923ff';
+                        option.style.color = '#4f2c16';
                     }
                     option.onmouseover = () => {
                         option.style.backgroundColor = '#fff88bff';
-                        option.style.color = '#844923ff';
+                        option.style.color = '#4f2c16';
                         if (index !== 0) {
                             allOptions[0].style.backgroundColor = bgColor;
                             allOptions[0].style.color = '#fff88bff';
@@ -154,8 +156,12 @@ function CategoryAndNumOfLettersToChoose() {
                 <ClearLocalStorageButton />
                 <FullscreenButton />
             </div>
-            <h1>Feed the mouse - by guessing a word!</h1>
+            <h1>Feed the mouse (or another animal) - by guessing a word!</h1>
             <form onSubmit={handleSubmit}>
+                <label>Pick a character:</label>
+                <br /><br />
+                <CharacterSelector characters={characters} />
+                <br />
                 <label>Enter a nickname:</label>
                 <br />
                 <input className={btnBckgroundClass} type="text" name="name" id="name" maxLength={10} autoFocus autoComplete="off" value={gamersName}
@@ -225,7 +231,7 @@ function CategoryAndNumOfLettersToChoose() {
                             option: (provided, state) => ({
                                 ...provided,
                                 backgroundColor: state.isFocused ? '#fff88bff' : bgColor,
-                                color: state.isFocused ? '#844923ff' : '#fff88bff',
+                                color: state.isFocused ? '#4f2c16' : '#fff88bff',
                                 cursor: 'pointer',
                             }),
                             indicatorSeparator: (provided) => ({
@@ -301,7 +307,7 @@ function CategoryAndNumOfLettersToChoose() {
                             option: (provided, state) => ({
                                 ...provided,
                                 backgroundColor: state.isFocused ? '#fff88bff' : bgColor,
-                                color: state.isFocused ? '#844923ff' : '#fff88bff',
+                                color: state.isFocused ? '#4f2c16' : '#fff88bff',
                                 cursor: 'pointer',
                             }),
                             indicatorSeparator: (provided) => ({
