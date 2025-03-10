@@ -1,8 +1,10 @@
 # Feed the mouse
 
-Feed the mouse - by guessing a word!
+Feed the mouse (or another animal) - by guessing a word!
 
-![image](https://github.com/user-attachments/assets/124349c6-76f3-493a-816f-7a4b45c2828b)
+Try it out: https://vdcoderforfun.itch.io/feed-the-mouse
+
+![Screenshot (1)](https://github.com/user-attachments/assets/d6b0418c-6096-4f59-991b-d2748a8a543f)
 
 
 
